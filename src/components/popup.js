@@ -1,32 +1,26 @@
 /* global chrome */
 import React from 'react';
+import TopBar from '../components/TopBar.js';
+import Schedule from './Schedule';
 
-import graphicSrc from '../images/graphic.png';
-
-const Popup = () => {
-  const handleClick = () => {
-    // When the icon is clicked, create a new tab pointing to the index page
-    // Change this depending on your routes (in this case, the full page is the "/" route)
-    chrome.tabs.create({
-      url: chrome.runtime.getURL('/index.html'),
-    });
-  };
-
+const Popup = ({ data, setData }) => {
   return (
-    <div>
-      <section className="popup-content">
-        <img src={graphicSrc} alt="Welcome Graphic" />
-        <h1>Popup Starter Template</h1>
-        <p>
-          This is the popup portion of the Chrome extension (with some basic
-          styling added) toggled by clicking the extension's icon. Please read
-          the <b>README.md</b> for more information.
+    <div className="home">
+      <TopBar />
+      <div className="home--body body">
+        <p className="bold">
+          <span role="img">🔥</span>
+          {data.streak} day streak
         </p>
-        <br />
-        <p>
-          <button onClick={handleClick}>View Full Page Portion</button>
-        </p>
-      </section>
+        <div className="background-div">
+          <p className="small-light">My goal</p>
+          <p className="small-bold">
+            {data.courseGoal ? data.courseGoal : 'Placeholder goal'}
+          </p>
+        </div>
+        <p className="bold">Daily Schedule</p>
+        <Schedule data={data} setData={setData} currentPage="home" />
+      </div>
     </div>
   );
 };

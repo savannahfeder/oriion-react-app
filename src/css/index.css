@@ -2,7 +2,7 @@
  * This is temporary styling and can be completed removed or replaced.
  */
 
-img {
+/* img {
   height: auto;
   max-width: 100%;
 }
@@ -18,27 +18,259 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 100vw;
+} */
+
+.App {
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 5px;
+  height: 250px;
+  width: 430px;
+  font-family: 'Poppins', sans-serif;
+  color: #0093ed;
+  /* overflow: scroll; */
 }
 
-.popup-content {
-  padding: 50px;
-  width: 400px;
+/*Text*/
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
 }
 
-.content {
-  max-width: 400px;
-  padding: 50px;
+p {
+  margin-bottom: 0;
 }
 
-.content h1,
-.popup-content h1 {
-  font-size: 30px;
-  text-align: center;
+ul {
+  list-style-type: none;
 }
 
-.popup-content p,
-.content p {
+.small-light {
+  font-size: 13.5px;
+}
+
+.bold {
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.small-bold {
   font-size: 16px;
+  font-weight: bold;
+}
+
+.lightest-text {
+  font-weight: 300;
+}
+
+/*All pages*/
+
+.body {
+  margin: 5px 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Reusable Elements */
+
+button,
+.button {
+  background-color: #0093ed;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 12px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+  background-color: #10b4fa;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  background-color: #10b4fa;
+  color: white;
+}
+
+/*Top Bar*/
+
+h1 {
   margin: 0;
+  padding: 5px 10px 10px 15px;
+  align-self: center;
+}
+
+hr {
+  margin-top: 0;
+  border: 1px solid #bfbfbf;
+}
+
+/*Top Bar Page Specific*/
+
+.top-bar-page-specific--container {
+  padding: 10px 15px;
+  display: flex;
+}
+
+.top-bar-page-specific--title {
+  margin-left: 88px;
+  font-size: 27px;
+}
+
+.top-bar-page-specific--emoji {
+  font-size: 30px;
+  padding-left: 6px;
+}
+
+/*Home page*/
+
+.background-div {
+  background-color: #d6f5ff;
+  border-radius: 18px;
+  padding: 10px 15px;
+  margin: 10px 0;
+}
+
+/*MeetOriion Page*/
+
+.meet-oriion--body {
   text-align: center;
+  padding: 30px;
+  padding-top: 17px;
+}
+
+.meet-oriion--header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.meet-oriion--tagline-div {
+  margin: auto;
+  margin-top: 0;
+  max-width: 200px;
+}
+
+.button-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.meet-oriion--button {
+  margin-top: 15px;
+}
+
+/*CoursePicker Page*/
+
+.course-picker--container {
+  padding: 3px 15px 10px 15px;
+}
+
+.input-field {
+  width: 85%;
+  padding: 7px 12px;
+  border-radius: 12px;
+  border: 2px solid #7bc9f9;
+  color: #0093ed;
+  margin-bottom: 5px;
+}
+
+.course-picker--prompt {
+  margin-bottom: 5px;
+}
+
+.form-button {
+  margin-top: 4px;
+  border: none;
+}
+
+/* Course Goal Page */
+
+.course-goal--container {
+  padding: 8px 15px 10px 20px;
+}
+
+.course-goal--field {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.course-goal--prompt {
+  margin-bottom: 8px;
+}
+
+.course-goal--explanation {
+  margin-bottom: 12px;
+}
+
+.course-goal--button {
+  width: 32%;
+}
+
+::placeholder {
+  color: #7dd8ff;
+}
+
+/* Schedule Component */
+.date-item {
+  display: flex;
+  background-color: white;
+  padding: 14px 17px;
+  border-radius: 10px;
+  margin: 0 5px;
+  max-width: 9px;
+  min-width: 9px;
+  justify-content: center;
+  align-content: center;
+}
+
+.schedule {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.selected {
+  background-color: #0093ed;
+  color: white;
+}
+
+/* Schedule Selection Page */
+
+.schedule-selection--container {
+  padding: 8px 15px 10px 20px;
+}
+
+.schedule-selection--prompt {
+  margin-bottom: 8px;
+}
+
+.schedule-selection--explanation {
+  margin-bottom: 12px;
+}
+
+.input-time {
+  width: 12%;
+  padding: 7px 12px;
+  border-radius: 12px;
+  border: 2px solid #7bc9f9;
+  color: #0093ed;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.editing {
+  outline: solid rgb(0, 1, 2) 1px;
+  background-color: #0093ed;
+  color: white;
 }
