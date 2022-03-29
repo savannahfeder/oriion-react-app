@@ -28,7 +28,7 @@ body {
   width: 430px;
   font-family: 'Poppins', sans-serif;
   color: #0093ed;
-  /* overflow: scroll; */
+  overflow: scroll;
 }
 
 /*Text*/
