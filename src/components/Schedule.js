@@ -100,56 +100,58 @@ const Schedule = (props) => {
           isWeekdaySelected={saturdaySelected}
         />
       </ul>
-      <ul class="daily-schedule-inputs">
-        {sundaySelected && (
-          <ScheduleWeekdayInput
-            weekday="Sunday"
-            data={props.data}
-            setData={props.setData}
-          />
-        )}
-        {mondaySelected && (
-          <ScheduleWeekdayInput
-            weekday="Monday"
-            data={props.data}
-            setData={props.setData}
-          />
-        )}
-        {tuesdaySelected && (
-          <ScheduleWeekdayInput
-            weekday="Tuesday"
-            data={props.data}
-            setData={props.setData}
-          />
-        )}
-        {wednesdaySelected && (
-          <ScheduleWeekdayInput
-            weekday="Wednesday"
-            data={props.data}
-            setData={props.setData}
-          />
-        )}
-        {thursdaySelected && (
-          <ScheduleWeekdayInput
-            weekday="Thursday"
-            data={props.data}
-            setData={props.setData}
-          />
-        )}
-        {fridaySelected && (
-          <ScheduleWeekdayInput
-            weekday="Friday"
-            data={props.data}
-            setData={props.setData}
-          />
-        )}
-        {saturdaySelected && (
-          <ScheduleWeekdayInput
-            weekday="Saturday"
-            data={props.data}
-            setData={props.setData}
-          />
-        )}
+      <ul class="schedule--inputs-wrapper">
+        <div>
+          {sundaySelected && (
+            <ScheduleWeekdayInput
+              weekday="Sunday"
+              data={props.data}
+              setData={props.setData}
+            />
+          )}
+          {mondaySelected && (
+            <ScheduleWeekdayInput
+              weekday="Monday"
+              data={props.data}
+              setData={props.setData}
+            />
+          )}
+          {tuesdaySelected && (
+            <ScheduleWeekdayInput
+              weekday="Tuesday"
+              data={props.data}
+              setData={props.setData}
+            />
+          )}
+          {wednesdaySelected && (
+            <ScheduleWeekdayInput
+              weekday="Wednesday"
+              data={props.data}
+              setData={props.setData}
+            />
+          )}
+          {thursdaySelected && (
+            <ScheduleWeekdayInput
+              weekday="Thursday"
+              data={props.data}
+              setData={props.setData}
+            />
+          )}
+          {fridaySelected && (
+            <ScheduleWeekdayInput
+              weekday="Friday"
+              data={props.data}
+              setData={props.setData}
+            />
+          )}
+          {saturdaySelected && (
+            <ScheduleWeekdayInput
+              weekday="Saturday"
+              data={props.data}
+              setData={props.setData}
+            />
+          )}
+        </div>
       </ul>
       {/* Only shows submit button on Schedule onboarding page and if at least one block selected  */}
       {props.currentPage === 'schedule' &&
@@ -160,9 +162,11 @@ const Schedule = (props) => {
           thursdaySelected ||
           fridaySelected ||
           saturdaySelected) && (
-          <button onClick={handleScheduleSubmit} className="schedule--button">
-            Submit
-          </button>
+          <div className="schedule--button-wrapper">
+            <button onClick={handleScheduleSubmit} className="schedule--button">
+              Submit
+            </button>
+          </div>
         )}
     </div>
   );

@@ -22,8 +22,6 @@ body {
 
 .App {
   background-color: white;
-  border: 1px black solid;
-  border-radius: 5px;
   height: 250px;
   width: 430px;
   font-family: 'Poppins', sans-serif;
@@ -108,7 +106,7 @@ button:hover,
 
 h1 {
   margin: 0;
-  padding: 5px 10px 10px 15px;
+  padding: 5px 10px 10px 5px;
   align-self: center;
 }
 
@@ -120,17 +118,17 @@ hr {
 /*Top Bar Page Specific*/
 
 .top-bar-page-specific--container {
-  padding: 10px 15px;
+  padding: 5px 15px;
   display: flex;
 }
 
 .top-bar-page-specific--title {
-  margin-left: 88px;
-  font-size: 27px;
+  margin-left: 106px;
+  font-size: 23px;
 }
 
 .top-bar-page-specific--emoji {
-  font-size: 30px;
+  font-size: 28px;
   padding-left: 6px;
 }
 
@@ -158,7 +156,7 @@ hr {
 
 .meet-oriion--tagline-div {
   margin: auto;
-  margin-top: 0;
+  margin-top: 15px;
   max-width: 200px;
 }
 
@@ -257,6 +255,17 @@ hr {
 
 .schedule-selection--explanation {
   margin-bottom: 12px;
+}
+
+/* TODO: center button */
+.schedule--inputs-wrapper {
+  display: flex;
+  justify-items: flex-end;
+}
+
+.schedule--button-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .input-time {

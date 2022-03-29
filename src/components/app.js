@@ -53,8 +53,12 @@ const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={MeetOriion} />
-        <Route path="/get-started" component={MeetOriion} />
+        <Route exact path="/">
+          <MeetOriion />
+        </Route>
+        <Route path="/get-started">
+          <MeetOriion />
+        </Route>
         <Route exact path="/popup">
           <Popup data={data} setData={setData} />
         </Route>
