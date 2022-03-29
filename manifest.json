@@ -13,4 +13,10 @@
     "default_popup": "index.html/#popup",
     "default_title": "Oriion"
   }
+  // "content_scripts": [
+  //   {
+  //     "matches": ["https://udemy.com/*"],
+  //     "js": ["contentScript.js"]
+  //   }
+  // ]
 }

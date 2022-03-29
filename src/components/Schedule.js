@@ -19,7 +19,7 @@ const Schedule = (props) => {
     event.preventDefault();
     console.log('Submitted!');
     console.log(props.data);
-    history.push('/');
+    history.push('/popup');
   };
 
   const handleToggle = (e, weekday) => {
@@ -152,7 +152,7 @@ const Schedule = (props) => {
         )}
       </ul>
       {/* Only shows submit button on Schedule onboarding page and if at least one block selected  */}
-      {/* {props.currentPage === 'schedule' &&
+      {props.currentPage === 'schedule' &&
         (sundaySelected ||
           mondaySelected ||
           tuesdaySelected ||
@@ -163,7 +163,7 @@ const Schedule = (props) => {
           <button onClick={handleScheduleSubmit} className="schedule--button">
             Submit
           </button>
-        )} */}
+        )}
     </div>
   );
 };

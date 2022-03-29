@@ -1,6 +1,8 @@
 import React from 'react';
 
 export default function ScheduleWeekdayInput(props) {
+  // const hasInputtedTimeSlots = data[weekday] ? data[weekday].length > 1 : false;
+
   const currentWeekday = props.weekday.toLowerCase();
 
   const handleInput = (e) => {

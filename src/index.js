@@ -6,7 +6,7 @@ import App from './components/app';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/popup">
       <App />
     </Router>
   </React.StrictMode>,

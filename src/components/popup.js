@@ -4,6 +4,7 @@ import TopBar from '../components/TopBar.js';
 import Schedule from './Schedule';
 
 const Popup = ({ data, setData }) => {
+  console.log(window.location);
   return (
     <div className="home">
       <TopBar />
