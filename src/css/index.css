@@ -1,3 +1,4 @@
+/* @import '~react-vis/dist/style'; */
 /*
  * This is temporary styling and can be completed removed or replaced.
  */
@@ -26,7 +27,7 @@ body {
   width: 430px;
   font-family: 'Poppins', sans-serif;
   color: #0093ed;
-  overflow: scroll;
+  overflow: auto;
 }
 
 /*Text*/
@@ -139,6 +140,12 @@ hr {
   border-radius: 18px;
   padding: 10px 15px;
   margin: 10px 0;
+}
+
+.bar-chart-title {
+  /* text-align: center; */
+  font-size: 18px;
+  margin: 8px 0 0 15px;
 }
 
 /*MeetOriion Page*/
@@ -257,7 +264,6 @@ hr {
   margin-bottom: 12px;
 }
 
-/* TODO: center button */
 .schedule--inputs-wrapper {
   display: flex;
   justify-items: flex-end;

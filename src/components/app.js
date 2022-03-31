@@ -9,13 +9,6 @@ import MeetOriion from './MeetOriion';
 import '../css/index.css';
 
 const App = () => {
-  const isNewUser = localStorage.getItem('data') ? false : true;
-
-  // sets data to user data retrieved from local storage, or newUserObject if no data is stored
-  const [data, setData] = useState(
-    () => JSON.parse(localStorage.getItem('data')) || newUserObject
-  );
-
   const newUserObject = {
     courseName: null,
     courseURL: null,
@@ -31,14 +24,19 @@ const App = () => {
     saturday: [],
   };
 
+  const [isNewUser, setIsNewUser] = useState(
+    localStorage.getItem('data') ? false : true
+  );
+
+  // sets data to user data retrieved from local storage, or newUserObject if no data is stored
+  const [data, setData] = useState(
+    () => JSON.parse(localStorage.getItem('data')) || newUserObject
+  );
+
   // storage and retrieval of user data from local storage
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(data));
   }, [data]);
-
-  // TODO: delete
-  console.log(JSON.parse(localStorage.getItem('data')));
-  console.log(data);
 
   // set badge text to streak
   // chrome.action.setBadgeText(
@@ -54,7 +52,8 @@ const App = () => {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <MeetOriion />
+          {isNewUser && <MeetOriion />}
+          {!isNewUser && <Popup data={data} setData={setData} />}
         </Route>
         <Route path="/get-started">
           <MeetOriion />

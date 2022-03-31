@@ -2,6 +2,7 @@
 import React from 'react';
 import TopBar from '../components/TopBar.js';
 import Schedule from './Schedule';
+import BarChart from './BarChart.js';
 
 const Popup = ({ data, setData }) => {
   console.log(window.location);
@@ -21,6 +22,8 @@ const Popup = ({ data, setData }) => {
         </div>
         <p className="bold">Daily Schedule</p>
         <Schedule data={data} setData={setData} currentPage="home" />
+        <p className="bold">Weekly Analytics</p>
+        <BarChart />
       </div>
     </div>
   );
