@@ -1,6 +1,10 @@
-# React - Popup / Full Page Starter Template
+# Oriion ✨
+Oriion is an accountability chrome extension developed to reduce the low retention rates of self-paced online courses.
 
-## About This Starter Template
+
+<img src="https://user-images.githubusercontent.com/71240740/153739991-75b70b26-d36c-416a-8fd2-518703b703fc.png" width="250"/>
+
+## About The Extension Template Used
 
 This starter template provides a React (based on Create React App) Chrome extension that opens a popup when the extension icon is clicked. Also, when the "Open Full Page Portion" button is clicked within the popup, it will open the full page portion of the extension. This pattern is typically seen when you have a popup extension with a separate settings page, for example.
 
