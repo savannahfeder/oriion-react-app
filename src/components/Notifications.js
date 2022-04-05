@@ -3,7 +3,6 @@ import TopBar from './TopBar.js';
 import { Link } from 'react-router-dom';
 
 const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
-  console.log(notificationFrequency);
   const toggleFrequency = () => {
     setNotificationFrequency((prevState) => {
       if (prevState === 'daily') {

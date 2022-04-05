@@ -42,6 +42,7 @@ const App = () => {
   }, [data]);
 
   // set badge text to streak
+  // TODO: fix eslint issue
   // chrome.action.setBadgeText(
   //   {
   //     text: 'TEST',
