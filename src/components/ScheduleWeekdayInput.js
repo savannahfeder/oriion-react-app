@@ -28,8 +28,6 @@ export default function ScheduleWeekdayInput({
   };
 
   const resetWeekdayInputs = (e) => {
-    console.log('reset!');
-
     setData((prevData) => {
       return {
         ...prevData,

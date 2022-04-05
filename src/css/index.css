@@ -1,36 +1,13 @@
-/* @import '~react-vis/dist/style'; */
-/*
- * This is temporary styling and can be completed removed or replaced.
- */
-
-/* img {
-  height: auto;
-  max-width: 100%;
-}
-
-body {
-  margin: 0;
-}
-
-.container {
-  height: 100vh;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100vw;
-} */
-
 .App {
   background-color: white;
   height: 250px;
   width: 430px;
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
   color: #0093ed;
   overflow: auto;
 }
 
-/*Text*/
+/* ============================ Text ============================= */
 
 h1,
 h2,
@@ -66,7 +43,7 @@ ul {
   font-weight: 300;
 }
 
-/*All pages*/
+/* ============================ All Pages ============================= */
 
 .body {
   margin: 5px 20px;
@@ -76,7 +53,7 @@ ul {
   display: none;
 }
 
-/* Reusable Elements */
+/* ============================ Reusable Elements Page ============================= */
 
 button,
 .button {
@@ -103,7 +80,7 @@ button:hover,
   color: white;
 }
 
-/*Top Bar*/
+/* ============================ Top Bar Page ============================= */
 
 h1 {
   margin: 0;
@@ -116,7 +93,7 @@ hr {
   border: 1px solid #bfbfbf;
 }
 
-/*Top Bar Page Specific*/
+/* ============================ Top Bar Page Specific Page ============================= */
 
 .top-bar-page-specific--container {
   padding: 5px 15px;
@@ -133,7 +110,7 @@ hr {
   padding-left: 6px;
 }
 
-/*Home page*/
+/* ============================ Popup Home Page ============================= */
 
 .background-div {
   background-color: #d6f5ff;
@@ -148,7 +125,7 @@ hr {
   margin: 8px 0 0 15px;
 }
 
-/*MeetOriion Page*/
+/* ============================ Meet Oriion Page ============================= */
 
 .meet-oriion--body {
   text-align: center;
@@ -159,12 +136,14 @@ hr {
 .meet-oriion--header {
   margin-bottom: 0;
   padding-bottom: 0;
+  font-size: 30px;
 }
 
 .meet-oriion--tagline-div {
   margin: auto;
-  margin-top: 15px;
-  max-width: 200px;
+  margin-top: 13px;
+  max-width: 215px;
+  font-size: 13.5px;
 }
 
 .button-link {
@@ -176,7 +155,7 @@ hr {
   margin-top: 15px;
 }
 
-/*CoursePicker Page*/
+/* ============================ Course Picker Page ============================= */
 
 .course-picker--container {
   padding: 3px 15px 10px 15px;
@@ -200,7 +179,7 @@ hr {
   border: none;
 }
 
-/* Course Goal Page */
+/* ============================ Course Goal Page ============================= */
 
 .course-goal--container {
   padding: 8px 15px 10px 20px;
@@ -227,7 +206,8 @@ hr {
   color: #7dd8ff;
 }
 
-/* Schedule Component */
+/* ============================ Schedule Component ============================= */
+
 .date-item {
   display: flex;
   background-color: white;
@@ -250,7 +230,7 @@ hr {
   color: white;
 }
 
-/* Schedule Selection & Schedule Weekday Input Pages */
+/* =============== Schedule Selection and Schedule Weekday Input Pages =================== */
 
 .schedule-selection--container {
   padding: 8px 15px 10px 20px;
@@ -300,4 +280,39 @@ hr {
 
 .schedule--delete-button:hover {
   background-color: #6dc4fa;
+}
+
+/* ============================ Notifications Page ============================= */
+
+.notifications--header {
+  font-size: 18px;
+  font-weight: 500;
+  /* font-weight: 600; */
+}
+
+.notifications--body {
+  text-align: center;
+  padding: 20px;
+}
+
+.notifications--tagline-div {
+  margin: auto;
+  font-size: 15px;
+  padding: 0 15px;
+}
+
+.notifications--opt-out-link {
+  display: block;
+  margin-top: 8px;
+  text-decoration: none;
+  color: grey;
+}
+
+.notifications--frequency-button {
+  margin: 0;
+  padding: 3px 6px;
+  min-width: 55px;
+  max-width: 75px;
+  text-align: center;
+  border-radius: 8px;
 }

@@ -7,6 +7,7 @@ import CourseGoal from './CourseGoal';
 import ScheduleSelection from './ScheduleSelection';
 import MeetOriion from './MeetOriion';
 import '../css/index.css';
+import Notifications from './Notifications';
 
 const App = () => {
   const newUserObject = {
@@ -23,6 +24,8 @@ const App = () => {
     friday: [],
     saturday: [],
   };
+
+  const [notificationFrequency, setNotificationFrequency] = useState('daily');
 
   const [isNewUser, setIsNewUser] = useState(
     localStorage.getItem('data') ? false : true
@@ -69,6 +72,12 @@ const App = () => {
         </Route>
         <Route path="/set-schedule">
           <ScheduleSelection data={data} setData={setData} />
+        </Route>
+        <Route path="/notifications">
+          <Notifications
+            notificationFrequency={notificationFrequency}
+            setNotificationFrequency={setNotificationFrequency}
+          />
         </Route>
       </Switch>
     </div>
