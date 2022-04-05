@@ -1,8 +1,8 @@
 import React from 'react';
-import TopBar from '../components/TopBar.js';
+import TopBar from './TopBar.js';
 import { Link } from 'react-router-dom';
 
-export default function MeetOriion() {
+const MeetOriion = () => {
   return (
     <div className="meet-oriion">
       <TopBar />
@@ -24,4 +24,6 @@ export default function MeetOriion() {
       </div>
     </div>
   );
-}
+};
+
+export default MeetOriion;

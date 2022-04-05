@@ -250,7 +250,7 @@ hr {
   color: white;
 }
 
-/* Schedule Selection Page */
+/* Schedule Selection & Schedule Weekday Input Pages */
 
 .schedule-selection--container {
   padding: 8px 15px 10px 20px;
@@ -288,4 +288,16 @@ hr {
   outline: solid rgb(0, 1, 2) 1px;
   background-color: #0093ed;
   color: white;
+}
+
+.schedule--delete-button {
+  padding: 8px 10px;
+  border-radius: 50px;
+  margin: 8px;
+  font-size: 13.5px;
+  background-color: #10b4fa;
+}
+
+.schedule--delete-button:hover {
+  background-color: #6dc4fa;
 }

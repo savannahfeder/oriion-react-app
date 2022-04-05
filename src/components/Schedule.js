@@ -13,7 +13,6 @@ const Schedule = (props) => {
   const [fridaySelected, setFridaySelected] = useState(false);
   const [saturdaySelected, setSaturdaySelected] = useState(false);
 
-  console.log(tuesdaySelected);
   let history = useHistory();
   const handleScheduleSubmit = (event) => {
     event.preventDefault();
@@ -23,6 +22,9 @@ const Schedule = (props) => {
   };
 
   const handleToggle = (e, weekday) => {
+    console.log('toggle handled...');
+    console.log(e);
+    console.log(weekday);
     if (weekday === 'sunday') {
       setSundaySelected((prevState) => !prevState);
     } else if (weekday === 'monday') {
@@ -107,6 +109,7 @@ const Schedule = (props) => {
               weekday="Sunday"
               data={props.data}
               setData={props.setData}
+              handleToggle={handleToggle}
             />
           )}
           {mondaySelected && (
@@ -114,6 +117,7 @@ const Schedule = (props) => {
               weekday="Monday"
               data={props.data}
               setData={props.setData}
+              handleToggle={handleToggle}
             />
           )}
           {tuesdaySelected && (
@@ -121,6 +125,7 @@ const Schedule = (props) => {
               weekday="Tuesday"
               data={props.data}
               setData={props.setData}
+              handleToggle={handleToggle}
             />
           )}
           {wednesdaySelected && (
@@ -128,6 +133,7 @@ const Schedule = (props) => {
               weekday="Wednesday"
               data={props.data}
               setData={props.setData}
+              handleToggle={handleToggle}
             />
           )}
           {thursdaySelected && (
@@ -135,6 +141,7 @@ const Schedule = (props) => {
               weekday="Thursday"
               data={props.data}
               setData={props.setData}
+              handleToggle={handleToggle}
             />
           )}
           {fridaySelected && (
@@ -142,6 +149,7 @@ const Schedule = (props) => {
               weekday="Friday"
               data={props.data}
               setData={props.setData}
+              handleToggle={handleToggle}
             />
           )}
           {saturdaySelected && (
@@ -149,6 +157,7 @@ const Schedule = (props) => {
               weekday="Saturday"
               data={props.data}
               setData={props.setData}
+              handleToggle={handleToggle}
             />
           )}
         </div>
