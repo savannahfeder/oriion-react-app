@@ -4,19 +4,19 @@ import ScheduleWeekdayBlock from './ScheduleWeekdayBlock';
 import ScheduleWeekdayInput from './ScheduleWeekdayInput';
 
 const Schedule = ({ data, setData, currentPage }) => {
-  const [sundaySelected, setSundaySelected] = useState(false);
-  const [mondaySelected, setMondaySelected] = useState(false);
-  const [tuesdaySelected, setTuesdaySelected] = useState(false);
-  const [wednesdaySelected, setWednesdaySelected] = useState(false);
-  const [thursdaySelected, setThursdaySelected] = useState(false);
-  const [fridaySelected, setFridaySelected] = useState(false);
-  const [saturdaySelected, setSaturdaySelected] = useState(false);
+  const [selectedWeekdays, setSelectedWeekdays] = useState({
+    sunday: false,
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false,
+  });
 
   let history = useHistory();
   const handleScheduleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted!');
-    console.log(data);
     if (currentPage === 'schedule') {
       history.push('/notifications');
     } else {
@@ -25,40 +25,33 @@ const Schedule = ({ data, setData, currentPage }) => {
   };
 
   const handleToggle = (e, weekday) => {
-    if (weekday === 'sunday') {
-      setSundaySelected((prevState) => !prevState);
-    } else if (weekday === 'monday') {
-      setMondaySelected((prevState) => !prevState);
-    } else if (weekday === 'tuesday') {
-      setTuesdaySelected((prevState) => !prevState);
-    } else if (weekday === 'wednesday') {
-      setWednesdaySelected((prevState) => !prevState);
-    } else if (weekday === 'thursday') {
-      setThursdaySelected((prevState) => !prevState);
-    } else if (weekday === 'friday') {
-      setFridaySelected((prevState) => !prevState);
-    } else if (weekday === 'saturday') {
-      setSaturdaySelected((prevState) => !prevState);
-    }
+    setSelectedWeekdays((prevState) => {
+      return {
+        ...prevState,
+        [weekday]: !prevState[weekday],
+      };
+    });
   };
 
   const atLeastOneDaySelected =
-    sundaySelected ||
-    mondaySelected ||
-    tuesdaySelected ||
-    wednesdaySelected ||
-    thursdaySelected ||
-    fridaySelected ||
-    saturdaySelected;
+    selectedWeekdays.sunday ||
+    selectedWeekdays.monday ||
+    selectedWeekdays.tuesday ||
+    selectedWeekdays.wednesday ||
+    selectedWeekdays.thursday ||
+    selectedWeekdays.friday ||
+    selectedWeekdays.saturday;
 
   const deselectAllToggles = () => {
-    setSundaySelected(false);
-    setMondaySelected(false);
-    setTuesdaySelected(false);
-    setWednesdaySelected(false);
-    setThursdaySelected(false);
-    setFridaySelected(false);
-    setSaturdaySelected(false);
+    setSelectedWeekdays({
+      sunday: false,
+      monday: false,
+      tuesday: false,
+      wednesday: false,
+      thursday: false,
+      friday: false,
+      saturday: false,
+    });
   };
   return (
     <div className="schedule-component">
@@ -69,7 +62,7 @@ const Schedule = ({ data, setData, currentPage }) => {
           handleToggle={handleToggle}
           data={data}
           setData={setData}
-          isWeekdaySelected={sundaySelected}
+          isWeekdaySelected={selectedWeekdays.sunday}
         />
         <ScheduleWeekdayBlock
           weekday="monday"
@@ -77,7 +70,7 @@ const Schedule = ({ data, setData, currentPage }) => {
           handleToggle={handleToggle}
           data={data}
           setData={setData}
-          isWeekdaySelected={mondaySelected}
+          isWeekdaySelected={selectedWeekdays.monday}
         />
         <ScheduleWeekdayBlock
           weekday="tuesday"
@@ -85,7 +78,7 @@ const Schedule = ({ data, setData, currentPage }) => {
           handleToggle={handleToggle}
           data={data}
           setData={setData}
-          isWeekdaySelected={tuesdaySelected}
+          isWeekdaySelected={selectedWeekdays.tuesday}
         />
         <ScheduleWeekdayBlock
           weekday="wednesday"
@@ -93,7 +86,7 @@ const Schedule = ({ data, setData, currentPage }) => {
           handleToggle={handleToggle}
           data={data}
           setData={setData}
-          isWeekdaySelected={wednesdaySelected}
+          isWeekdaySelected={selectedWeekdays.wednesday}
         />
         <ScheduleWeekdayBlock
           weekday="thursday"
@@ -101,7 +94,7 @@ const Schedule = ({ data, setData, currentPage }) => {
           handleToggle={handleToggle}
           data={data}
           setData={setData}
-          isWeekdaySelected={thursdaySelected}
+          isWeekdaySelected={selectedWeekdays.thursday}
         />
         <ScheduleWeekdayBlock
           weekday="friday"
@@ -109,7 +102,7 @@ const Schedule = ({ data, setData, currentPage }) => {
           handleToggle={handleToggle}
           data={data}
           setData={setData}
-          isWeekdaySelected={fridaySelected}
+          isWeekdaySelected={selectedWeekdays.friday}
         />
         <ScheduleWeekdayBlock
           weekday="saturday"
@@ -117,12 +110,12 @@ const Schedule = ({ data, setData, currentPage }) => {
           handleToggle={handleToggle}
           data={data}
           setData={setData}
-          isWeekdaySelected={saturdaySelected}
+          isWeekdaySelected={selectedWeekdays.saturday}
         />
       </ul>
       <ul class="schedule--inputs-wrapper">
         <div>
-          {sundaySelected && (
+          {selectedWeekdays.sunday && (
             <ScheduleWeekdayInput
               weekday="Sunday"
               data={data}
@@ -130,7 +123,7 @@ const Schedule = ({ data, setData, currentPage }) => {
               handleToggle={handleToggle}
             />
           )}
-          {mondaySelected && (
+          {selectedWeekdays.monday && (
             <ScheduleWeekdayInput
               weekday="Monday"
               data={data}
@@ -138,7 +131,7 @@ const Schedule = ({ data, setData, currentPage }) => {
               handleToggle={handleToggle}
             />
           )}
-          {tuesdaySelected && (
+          {selectedWeekdays.tuesday && (
             <ScheduleWeekdayInput
               weekday="Tuesday"
               data={data}
@@ -146,7 +139,7 @@ const Schedule = ({ data, setData, currentPage }) => {
               handleToggle={handleToggle}
             />
           )}
-          {wednesdaySelected && (
+          {selectedWeekdays.wednesday && (
             <ScheduleWeekdayInput
               weekday="Wednesday"
               data={data}
@@ -154,7 +147,7 @@ const Schedule = ({ data, setData, currentPage }) => {
               handleToggle={handleToggle}
             />
           )}
-          {thursdaySelected && (
+          {selectedWeekdays.thursday && (
             <ScheduleWeekdayInput
               weekday="Thursday"
               data={data}
@@ -162,7 +155,7 @@ const Schedule = ({ data, setData, currentPage }) => {
               handleToggle={handleToggle}
             />
           )}
-          {fridaySelected && (
+          {selectedWeekdays.friday && (
             <ScheduleWeekdayInput
               weekday="Friday"
               data={data}
@@ -170,7 +163,7 @@ const Schedule = ({ data, setData, currentPage }) => {
               handleToggle={handleToggle}
             />
           )}
-          {saturdaySelected && (
+          {selectedWeekdays.saturday && (
             <ScheduleWeekdayInput
               weekday="Saturday"
               data={data}
@@ -180,7 +173,6 @@ const Schedule = ({ data, setData, currentPage }) => {
           )}
         </div>
       </ul>
-      {/* Conditional rendering  */}
       {atLeastOneDaySelected && (
         <div className="schedule--button-wrapper">
           <button onClick={handleScheduleSubmit} className="schedule--button">
