@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import ScheduleWeekdayBlock from './ScheduleWeekdayBlock';
 import ScheduleWeekdayInput from './ScheduleWeekdayInput';
 
-//TODO: refactor schedule blocks and input fields into components to make less repetitive
 const Schedule = ({ data, setData, currentPage }) => {
   const [sundaySelected, setSundaySelected] = useState(false);
   const [mondaySelected, setMondaySelected] = useState(false);
@@ -18,7 +17,11 @@ const Schedule = ({ data, setData, currentPage }) => {
     event.preventDefault();
     console.log('Submitted!');
     console.log(data);
-    history.push('/notifications');
+    if (currentPage === 'schedule') {
+      history.push('/notifications');
+    } else {
+      deselectAllToggles();
+    }
   };
 
   const handleToggle = (e, weekday) => {
@@ -39,6 +42,24 @@ const Schedule = ({ data, setData, currentPage }) => {
     }
   };
 
+  const atLeastOneDaySelected =
+    sundaySelected ||
+    mondaySelected ||
+    tuesdaySelected ||
+    wednesdaySelected ||
+    thursdaySelected ||
+    fridaySelected ||
+    saturdaySelected;
+
+  const deselectAllToggles = () => {
+    setSundaySelected(false);
+    setMondaySelected(false);
+    setTuesdaySelected(false);
+    setWednesdaySelected(false);
+    setThursdaySelected(false);
+    setFridaySelected(false);
+    setSaturdaySelected(false);
+  };
   return (
     <div className="schedule-component">
       <ul className="schedule background-div">
@@ -159,21 +180,14 @@ const Schedule = ({ data, setData, currentPage }) => {
           )}
         </div>
       </ul>
-      {/* Only shows submit button on Schedule onboarding page and if at least one block selected  */}
-      {currentPage === 'schedule' &&
-        (sundaySelected ||
-          mondaySelected ||
-          tuesdaySelected ||
-          wednesdaySelected ||
-          thursdaySelected ||
-          fridaySelected ||
-          saturdaySelected) && (
-          <div className="schedule--button-wrapper">
-            <button onClick={handleScheduleSubmit} className="schedule--button">
-              Submit
-            </button>
-          </div>
-        )}
+      {/* Conditional rendering  */}
+      {atLeastOneDaySelected && (
+        <div className="schedule--button-wrapper">
+          <button onClick={handleScheduleSubmit} className="schedule--button">
+            Submit
+          </button>
+        </div>
+      )}
     </div>
   );
 };

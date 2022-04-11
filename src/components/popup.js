@@ -5,6 +5,7 @@ import Schedule from './Schedule';
 import BarChart from './BarChart.js';
 
 const Popup = ({ data, setData }) => {
+  // const { streak, courseGoal } = data;
   return (
     <div className="home">
       <TopBar />
