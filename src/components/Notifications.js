@@ -16,6 +16,7 @@ const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
       }
     });
   };
+  console.log(notificationFrequency);
 
   return (
     <div className="meet-oriion">
@@ -38,8 +39,11 @@ const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
           <Link className="button button-link meet-oriion--button" to="/popup">
             Turn on Notifications
           </Link>
-          {/* TODO: below add onClick={setNotificiationFrequency('never')} */}
-          <Link className="notifications--opt-out-link" to="/popup">
+          <Link
+            className="notifications--opt-out-link"
+            onClick={() => setNotificationFrequency('never')}
+            to="/popup"
+          >
             Not Now
           </Link>
         </div>

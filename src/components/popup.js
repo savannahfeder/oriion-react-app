@@ -1,4 +1,3 @@
-/* global chrome */
 import React from 'react';
 import TopBar from '../components/TopBar.js';
 import Schedule from './Schedule';
