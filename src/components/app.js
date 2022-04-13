@@ -56,12 +56,8 @@ const App = () => {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          {/* {isNewUser && <MeetOriion />}
-          {!isNewUser && <Popup data={data} setData={setData} />} */}
-          <Notifications
-            notificationFrequency={notificationFrequency}
-            setNotificationFrequency={setNotificationFrequency}
-          />
+          {isNewUser && <MeetOriion />}
+          {!isNewUser && <Popup data={data} setData={setData} />}
         </Route>
         <Route path="/get-started">
           <MeetOriion />
