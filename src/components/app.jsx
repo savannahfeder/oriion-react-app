@@ -1,13 +1,13 @@
-// import { Route, Switch } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import CoursePicker from "./onboarding/CoursePicker.jsx";
-// import FullPage from "./full-page";
-// import Popup from "./popup";
-// import CoursePicker from "./CoursePicker";
-// import CourseGoal from "./CourseGoal";
-// import ScheduleSelection from "./ScheduleSelection";
-import MeetOriion from "./onboarding/MeetOriion.jsx";
-// import Notifications from "./Notifications";
+import { Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import FullPage from './full-page';
+import Popup from './popup';
+import CoursePicker from './CoursePicker';
+import CourseGoal from './CourseGoal';
+import ScheduleSelection from './ScheduleSelection';
+import MeetOriion from './MeetOriion';
+import '../css/index.css';
+import Notifications from './Notifications';
 
 const App = () => {
   const newUserObject = {
@@ -25,40 +25,37 @@ const App = () => {
     saturday: [],
   };
 
-  const [notificationFrequency, setNotificationFrequency] = useState("daily");
+  const [notificationFrequency, setNotificationFrequency] = useState('daily');
 
   const [isNewUser, setIsNewUser] = useState(
-    localStorage.getItem("data") ? false : true
+    localStorage.getItem('data') ? false : true
   );
 
   // sets data to user data retrieved from local storage, or newUserObject if no data is stored
   const [data, setData] = useState(
-    () => JSON.parse(localStorage.getItem("data")) || newUserObject
+    () => JSON.parse(localStorage.getItem('data')) || newUserObject
   );
 
   // storage and retrieval of user data from local storage
   useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem('data', JSON.stringify(data));
   }, [data]);
 
-  // TODO: make streak render dynamically
-  chrome.action.setBadgeText(
-    {
-      text: "0",
-    },
-    () => {
-      console.log("Set badge text successfully");
-    }
-  );
+  // set badge text to streak
+  // TODO: fix eslint issue
+  // chrome.action.setBadgeText(
+  //   {
+  //     text: 'TEST',
+  //   },
+  //   () => {
+  //     console.log('Set badge text successfully');
+  //   }
+  // );
 
   return (
     <div className="App">
-      {/* <h1>Helloo!</h1> */}
-      {/* <MeetOriion /> */}
-      <CoursePicker data={data} setData={setData} />
-      {/* <Switch>
+      <Switch>
         <Route exact path="/">
-          <MeetOriion />
           {isNewUser && <MeetOriion />}
           {!isNewUser && <Popup data={data} setData={setData} />}
         </Route>
@@ -81,9 +78,9 @@ const App = () => {
           <Notifications
             notificationFrequency={notificationFrequency}
             setNotificationFrequency={setNotificationFrequency}
-          /> 
+          />
         </Route>
-      </Switch>*/}
+      </Switch>
     </div>
   );
 };

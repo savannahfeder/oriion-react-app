@@ -1,11 +1,11 @@
 import React from "react";
-// import TopBar from "./TopBar.js";
+import TopBar from "../../components/topbar/TopBar.jsx";
 import { Link } from "react-router-dom";
 
 const MeetOriion = () => {
   return (
     <div className="meet-oriion">
-      {/* <TopBar /> */}
+      <TopBar />
       <div className="meet-oriion--body body">
         <div>
           <h1 className="meet-oriion--header">
