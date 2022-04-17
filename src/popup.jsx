@@ -1,16 +1,17 @@
 import React from "react";
 import { render } from "react-dom";
-import './popup.css';
+import "./popup.css";
+// import { HashRouter as Router } from "react-router-dom";
+import App from "./pages/App.jsx";
 
 function Popup() {
-    return (
-        <div className="hello-world">
-            hello world! <br /><br />
-            made by <a className="link" onClick={() => {
-                window.open("https://github.com/vivek9patel")
-            }}> vivek9patel</a >
-        </div >
-    )
+  return (
+    // <React.StrictMode>
+    //   <Router basename="/popup">
+    <App />
+    //   </Router>
+    // </React.StrictMode>
+  );
 }
 
 render(<Popup />, document.getElementById("popup-root"));

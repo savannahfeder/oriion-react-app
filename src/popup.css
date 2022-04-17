@@ -1,14 +1,318 @@
-/* replace with your css */
-.hello-world{
-    font-size: medium;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-align: center;
+.App {
+  background-color: white;
+  height: 250px;
+  width: 430px;
+  /* font-family: 'Poppins', sans-serif; */
+  color: #0093ed;
+  overflow: auto;
 }
 
-.link{
-    text-decoration: underline;
-    color: blue;
-    cursor: pointer;
+/* ============================ Text ============================= */
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.small-light {
+  font-size: 13.5px;
+}
+
+.bold {
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.small-bold {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.lightest-text {
+  font-weight: 300;
+}
+
+/* ============================ All Pages ============================= */
+
+.body {
+  margin: 5px 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ============================ Reusable Elements Page ============================= */
+
+button,
+.button {
+  background-color: #0093ed;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 12px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover,
+.button:hover {
+  background-color: #10b4fa;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  background-color: #10b4fa;
+  color: white;
+}
+
+/* ============================ Top Bar Page ============================= */
+
+h1 {
+  margin: 0;
+  padding: 5px 10px 10px 5px;
+  align-self: center;
+}
+
+hr {
+  margin-top: 0;
+  border: 1px solid #bfbfbf;
+}
+
+/* ============================ Top Bar Page Specific Page ============================= */
+
+.top-bar-page-specific--container {
+  padding: 5px 15px;
+  display: flex;
+}
+
+.top-bar-page-specific--title {
+  margin-left: 106px;
+  font-size: 23px;
+}
+
+.top-bar-page-specific--emoji {
+  font-size: 28px;
+  padding-left: 6px;
+}
+
+/* ============================ Popup Home Page ============================= */
+
+.background-div {
+  background-color: #d6f5ff;
+  border-radius: 18px;
+  padding: 10px 15px;
+  margin: 10px 0;
+}
+
+.bar-chart-title {
+  /* text-align: center; */
+  font-size: 18px;
+  margin: 8px 0 0 15px;
+}
+
+/* ============================ Meet Oriion Page ============================= */
+
+.meet-oriion--body {
+  text-align: center;
+  padding: 30px;
+  padding-top: 17px;
+}
+
+.meet-oriion--header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-size: 30px;
+}
+
+.meet-oriion--tagline-div {
+  margin: auto;
+  margin-top: 13px;
+  max-width: 215px;
+  font-size: 13.5px;
+}
+
+.button-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.meet-oriion--button {
+  margin-top: 15px;
+}
+
+/* ============================ Course Picker Page ============================= */
+
+.course-picker--container {
+  padding: 3px 15px 10px 15px;
+}
+
+.input-field {
+  width: 85%;
+  padding: 7px 12px;
+  border-radius: 12px;
+  border: 2px solid #7bc9f9;
+  color: #0093ed;
+  margin-bottom: 5px;
+}
+
+.course-picker--prompt {
+  margin-bottom: 5px;
+}
+
+.form-button {
+  margin-top: 4px;
+  border: none;
+}
+
+/* ============================ Course Goal Page ============================= */
+
+.course-goal--container {
+  padding: 8px 15px 10px 20px;
+}
+
+.course-goal--field {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.course-goal--prompt {
+  margin-bottom: 8px;
+}
+
+.course-goal--explanation {
+  margin-bottom: 12px;
+}
+
+.course-goal--button {
+  width: 32%;
+}
+
+::placeholder {
+  color: #7dd8ff;
+}
+
+/* ============================ Schedule Component ============================= */
+
+.date-item {
+  display: flex;
+  background-color: white;
+  padding: 14px 17px;
+  border-radius: 10px;
+  margin: 0 5px;
+  max-width: 9px;
+  min-width: 9px;
+  justify-content: center;
+  align-content: center;
+}
+
+.schedule {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.selected {
+  background-color: #0093ed;
+  color: white;
+}
+
+/* =============== Schedule Selection and Schedule Weekday Input Pages =================== */
+
+.schedule-selection--container {
+  padding: 8px 15px 10px 20px;
+}
+
+.schedule-selection--prompt {
+  margin-bottom: 8px;
+}
+
+.schedule-selection--explanation {
+  margin-bottom: 12px;
+}
+
+.schedule--inputs-wrapper {
+  display: flex;
+  justify-items: flex-end;
+}
+
+.schedule--button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.input-time {
+  width: 12%;
+  padding: 7px 12px;
+  border-radius: 12px;
+  border: 2px solid #7bc9f9;
+  color: #0093ed;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.editing {
+  outline: solid rgb(0, 1, 2) 1px;
+  background-color: #0093ed;
+  color: white;
+}
+
+.schedule--delete-button {
+  padding: 8px 10px;
+  border-radius: 50px;
+  margin: 8px;
+  font-size: 13.5px;
+  background-color: #10b4fa;
+}
+
+.schedule--delete-button:hover {
+  background-color: #6dc4fa;
+}
+
+/* ============================ Notifications Page ============================= */
+
+.notifications--header {
+  font-size: 18px;
+  font-weight: 500;
+  /* font-weight: 600; */
+}
+
+.notifications--body {
+  text-align: center;
+  padding: 20px;
+}
+
+.notifications--tagline-div {
+  margin: auto;
+  font-size: 15px;
+  padding: 0 15px;
+}
+
+.notifications--opt-out-link {
+  display: block;
+  margin-top: 8px;
+  text-decoration: none;
+  color: grey;
+}
+
+.notifications--frequency-button {
+  margin: 0;
+  padding: 3px 6px;
+  min-width: 55px;
+  max-width: 75px;
+  text-align: center;
+  border-radius: 8px;
 }
