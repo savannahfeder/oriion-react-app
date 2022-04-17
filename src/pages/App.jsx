@@ -44,10 +44,10 @@ const App = () => {
   // TODO: make streak render dynamically
   chrome.action.setBadgeText(
     {
-      text: "0",
+      text: String(data.streak),
     },
     () => {
-      console.log("Set badge text successfully");
+      console.log("Set badge text successfully!");
     }
   );
 
