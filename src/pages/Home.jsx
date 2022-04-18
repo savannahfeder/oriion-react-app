@@ -1,10 +1,9 @@
 import React from "react";
-import TopBar from "./topbar/TopBar.jsx";
-import Schedule from "../pages/onboarding/Schedule";
-import BarChart from "./BarChart.jsx";
+import TopBar from "../components/topbar/TopBar.jsx";
+import Schedule from "../components/schedule/Schedule.jsx";
+// import BarChart from "../components/BarChart.jsx";
 
 const Popup = ({ data, setData }) => {
-  // const { streak, courseGoal } = data;
   return (
     <div className="home">
       <TopBar />
@@ -22,7 +21,7 @@ const Popup = ({ data, setData }) => {
         <p className="bold">Daily Schedule</p>
         <Schedule data={data} setData={setData} currentPage="home" />
         <p className="bold">Weekly Analytics</p>
-        <BarChart />
+        {/* <BarChart /> */}
       </div>
     </div>
   );
