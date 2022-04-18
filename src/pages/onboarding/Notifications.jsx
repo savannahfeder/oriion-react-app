@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TopBar from './TopBar.js';
+import TopBar from '../../components/topbar/TopBar.jsx';
 import { Link } from 'react-router-dom';
 
 const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {

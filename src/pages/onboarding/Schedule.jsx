@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import ScheduleWeekdayBlock from './ScheduleWeekdayBlock';
-import ScheduleWeekdayInput from './ScheduleWeekdayInput';
+import ScheduleWeekdayBlock from '../../components/ScheduleWeekdayBlock';
+import ScheduleWeekdayInput from '../../components/ScheduleWeekdayInput';
 
 const Schedule = ({ data, setData, currentPage }) => {
   const [selectedWeekdays, setSelectedWeekdays] = useState({

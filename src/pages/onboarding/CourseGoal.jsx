@@ -1,5 +1,5 @@
 import React from "react";
-import TopBarPageSpecific from "./TopBarPageSpecific.jsx";
+import TopBarPageSpecific from "../../components/TopBarPageSpecific.jsx";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 

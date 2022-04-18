@@ -41,7 +41,6 @@ const App = () => {
     localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
 
-  // TODO: make streak render dynamically
   chrome.action.setBadgeText(
     {
       text: String(data.streak),

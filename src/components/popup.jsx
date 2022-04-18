@@ -1,6 +1,6 @@
 import React from "react";
-import TopBar from "./TopBar.js";
-import Schedule from "./Schedule";
+import TopBar from "./topbar/TopBar.jsx";
+import Schedule from "../pages/onboarding/Schedule";
 import BarChart from "./BarChart.jsx";
 
 const Popup = ({ data, setData }) => {

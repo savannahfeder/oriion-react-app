@@ -1,6 +1,6 @@
 import React from "react";
-import TopBarPageSpecific from "./TopBarPageSpecific.jsx";
-import Schedule from "./Schedule.jsx";
+import TopBarPageSpecific from "../TopBarPageSpecific.jsx";
+import Schedule from "../../pages/onboarding/Schedule.jsx";
 
 export default function ScheduleSelection(props) {
   return (
