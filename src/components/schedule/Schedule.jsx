@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import ScheduleWeekdayBlock from '../../components/ScheduleWeekdayBlock';
-import ScheduleWeekdayInput from '../../components/ScheduleWeekdayInput';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import ScheduleWeekdayBlock from "./ScheduleWeekdayBlock.jsx";
+import ScheduleWeekdayInput from "./ScheduleWeekdayInput.jsx";
 
 const Schedule = ({ data, setData, currentPage }) => {
   const [selectedWeekdays, setSelectedWeekdays] = useState({
@@ -14,11 +14,11 @@ const Schedule = ({ data, setData, currentPage }) => {
     saturday: false,
   });
 
-  let history = useHistory();
+  // let history = useHistory();
   const handleScheduleSubmit = (event) => {
     event.preventDefault();
-    if (currentPage === 'schedule') {
-      history.push('/notifications');
+    if (currentPage === "schedule") {
+      // history.push("/notifications");
     } else {
       deselectAllToggles();
     }

@@ -1,8 +1,8 @@
 import React from "react";
-import TopBarPageSpecific from "../TopBarPageSpecific.jsx";
-import Schedule from "../../pages/onboarding/Schedule.jsx";
+import TopBarPageSpecific from "../../components/topbar/TopBarPageSpecific.jsx";
+import Schedule from "../../components/schedule/Schedule.jsx";
 
-export default function ScheduleSelection(props) {
+export default function ScheduleSelection({ data, setData }) {
   return (
     <div className="schedule-selection">
       <TopBarPageSpecific page="Scheduling" />
@@ -13,11 +13,7 @@ export default function ScheduleSelection(props) {
           <strong>importance of taking this step.</strong> Also mention to add
           to calendar, and will determine when popups appear if enabled.
         </p>
-        <Schedule
-          data={props.data}
-          setData={props.setData}
-          currentPage="schedule"
-        />
+        <Schedule data={data} setData={setData} currentPage="schedule" />
       </div>
     </div>
   );

@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import TopBar from '../../components/topbar/TopBar.jsx';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import TopBar from "../../components/topbar/TopBar.jsx";
+import { Link } from "react-router-dom";
 
 const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
   const toggleFrequency = () => {
     setNotificationFrequency((prevState) => {
-      if (prevState === 'daily') {
-        return 'weekly';
-      } else if (prevState === 'weekly') {
-        return 'bi-weekly';
-      } else if (prevState === 'bi-weekly') {
-        return 'monthly';
+      if (prevState === "daily") {
+        return "weekly";
+      } else if (prevState === "weekly") {
+        return "bi-weekly";
+      } else if (prevState === "bi-weekly") {
+        return "monthly";
       } else {
-        return 'daily';
+        return "daily";
       }
     });
   };
@@ -27,16 +27,16 @@ const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
             Stay consistent with email notifications
           </h1>
           <div className="notifications--tagline-div">
-            We’ll send you emails{' '}
+            We’ll send you emails{" "}
             <button
               class="notifications--frequency-button"
               onClick={toggleFrequency}
             >
               {notificationFrequency}
-            </button>{' '}
+            </button>{" "}
             and when you’re about to lose your streak.
           </div>
-          <Link className="button button-link meet-oriion--button" to="/popup">
+          {/* <Link className="button button-link meet-oriion--button" to="/popup">
             Turn on Notifications
           </Link>
           <Link
@@ -45,7 +45,7 @@ const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
             to="/popup"
           >
             Not Now
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

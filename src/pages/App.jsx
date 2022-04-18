@@ -1,6 +1,9 @@
 // import { Route, Switch } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import CoursePicker from "./onboarding/CoursePicker.jsx";
+import CourseGoal from "./onboarding/CourseGoal.jsx";
+import Notifications from "./onboarding/Notifications.jsx";
+import ScheduleSelection from "./onboarding/ScheduleSelection.jsx";
 // import FullPage from "./full-page";
 // import Popup from "./popup";
 // import CoursePicker from "./CoursePicker";
@@ -52,9 +55,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* <h1>Helloo!</h1> */}
-      {/* <MeetOriion /> */}
-      <CoursePicker data={data} setData={setData} />
+      <ScheduleSelection data={data} setData={setData} />
       {/* <Switch>
         <Route exact path="/">
           <MeetOriion />
