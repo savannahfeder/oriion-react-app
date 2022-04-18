@@ -14,12 +14,12 @@ const MeetOriion = () => {
           <div className="meet-oriion--tagline-div">
             Your online course accountability buddy
           </div>
-          {/* <Link
+          <Link
             className="button button-link meet-oriion--button"
             to="/select-course"
           >
             Let's get started
-          </Link> */}
+          </Link>
         </div>
       </div>
     </div>

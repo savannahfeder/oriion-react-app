@@ -1,17 +1,11 @@
-// import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import CoursePicker from "./onboarding/CoursePicker.jsx";
 import CourseGoal from "./onboarding/CourseGoal.jsx";
 import Notifications from "./onboarding/Notifications.jsx";
 import ScheduleSelection from "./onboarding/ScheduleSelection.jsx";
 import Home from "./Home.jsx";
-// import FullPage from "./full-page";
-// import Popup from "./popup";
-// import CoursePicker from "./CoursePicker";
-// import CourseGoal from "./CourseGoal";
-// import ScheduleSelection from "./ScheduleSelection";
 import MeetOriion from "./onboarding/MeetOriion.jsx";
-// import Notifications from "./Notifications";
 
 const App = () => {
   const newUserObject = {
@@ -56,11 +50,8 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* <ScheduleSelection data={data} setData={setData} /> */}
-      <Home data={data} setData={setData} />
-      {/* <Switch>
+      <Switch>
         <Route exact path="/">
-          <MeetOriion />
           {isNewUser && <MeetOriion />}
           {!isNewUser && <Home data={data} setData={setData} />}
         </Route>
@@ -68,7 +59,7 @@ const App = () => {
           <MeetOriion />
         </Route>
         <Route exact path="/popup">
-          <Popup data={data} setData={setData} />
+          <Home data={data} setData={setData} />
         </Route>
         <Route exact path="/select-course">
           <CoursePicker data={data} setData={setData} />
@@ -83,9 +74,9 @@ const App = () => {
           <Notifications
             notificationFrequency={notificationFrequency}
             setNotificationFrequency={setNotificationFrequency}
-          /> 
+          />
         </Route>
-      </Switch>*/}
+      </Switch>
     </div>
   );
 };

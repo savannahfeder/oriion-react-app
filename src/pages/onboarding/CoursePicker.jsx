@@ -3,11 +3,11 @@ import TopBarPageSpecific from "../../components/topbar/TopBarPageSpecific.jsx";
 import { useHistory } from "react-router-dom";
 
 export default function CoursePicker(props) {
-  // let history = useHistory(); //!!! history hook stops page from rendering; use Link instead
+  let history = useHistory(); //!!! history hook stops page from rendering; use Link instead
   const handleCourseSubmit = (event) => {
     event.preventDefault();
     console.log("Submitted!");
-    // history.push("/set-goal");
+    history.push("/set-goal");
   };
 
   const handleNameInput = (e) => {

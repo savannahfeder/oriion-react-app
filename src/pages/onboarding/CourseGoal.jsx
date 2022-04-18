@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 export default function CoursePicker(props) {
-  // let history = useHistory();
+  let history = useHistory();
   const handleGoalSubmit = (event) => {
     event.preventDefault();
     console.log("Submitted!");
-    // history.push("/set-schedule");
+    history.push("/set-schedule");
   };
 
   const handleInput = (e) => {
