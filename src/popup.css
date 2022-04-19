@@ -73,11 +73,34 @@ button:hover,
   background-color: #10b4fa;
 }
 
+button:disabled {
+  background-color: #abc9dc;
+}
+
+button:disabled:hover {
+  background-color: #abc9dc;
+}
+
 .pointer {
   cursor: pointer;
 }
 
 .pointer:hover {
+  background-color: #10b4fa;
+  color: white;
+}
+
+.tag {
+  background-color: white;
+  color: #0093ed;
+  border: 1px solid #0093ed;
+  border-radius: 50px;
+  padding: 4px 7px;
+  font-size: 13px;
+  margin: 4px 4px;
+}
+
+.tag:hover {
   background-color: #10b4fa;
   color: white;
 }
@@ -161,6 +184,24 @@ hr {
 
 .course-picker--container {
   padding: 3px 15px 10px 15px;
+}
+
+.course-picker--header {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.course-picker--body {
+  text-align: center;
+  padding: 20px;
+}
+
+.course-picker--tags {
+  margin-bottom: 14px;
+}
+
+.couse-picker--submit-button {
+  padding: 8px 22px;
 }
 
 .input-field {
