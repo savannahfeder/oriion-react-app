@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TopBarPageSpecific from "../../../components/topbar/TopBarPageSpecific.jsx";
 import Tag from "./Tag.jsx";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CoursePicker = () => {
   // TODO: refactor to be objects that include both the site name and url, or hash table / dictionary
@@ -31,6 +31,14 @@ const CoursePicker = () => {
   console.log(userCourses);
 
   const atLeastOneCourseSelected = userCourses.length > 0;
+  // disabled button styling if no courses selected
+  let styles;
+  if (atLeastOneCourseSelected) {
+    styles = "button couse-picker--submit-button button-link";
+  } else if (!atLeastOneCourseSelected) {
+    styles = "button couse-picker--submit-button button-link disabled";
+  }
+
   return (
     <div>
       <TopBarPageSpecific page="Courses" />
@@ -45,12 +53,9 @@ const CoursePicker = () => {
             />
           ))}
         </div>
-        <button
-          className="button couse-picker--submit-button"
-          disabled={!atLeastOneCourseSelected}
-        >
+        <Link className={styles} to="/set-goal">
           Submit
-        </button>
+        </Link>
       </div>
     </div>
   );

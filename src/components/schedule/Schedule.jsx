@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ScheduleWeekdayBlock from "./ScheduleWeekdayBlock.jsx";
 import ScheduleWeekdayInput from "./ScheduleWeekdayInput.jsx";
 
@@ -17,11 +17,10 @@ const Schedule = ({ data, setData, currentPage }) => {
   // let history = useHistory();
   const handleScheduleSubmit = (event) => {
     event.preventDefault();
-    if (currentPage === "schedule") {
-      // history.push("/notifications");
-    } else {
-      deselectAllToggles();
-    }
+    // if (currentPage === "schedule") {
+    //   // history.push("/notifications");
+    // } else {
+    deselectAllToggles();
   };
 
   const handleToggle = (e, weekday) => {
@@ -173,13 +172,18 @@ const Schedule = ({ data, setData, currentPage }) => {
           )}
         </div>
       </ul>
-      {atLeastOneDaySelected && (
-        <div className="schedule--button-wrapper">
+      <div className="schedule--button-wrapper">
+        {atLeastOneDaySelected && currentPage === "schedule" && (
+          <Link className="button button-link form-button" to="/notifications">
+            Submit
+          </Link>
+        )}
+        {atLeastOneDaySelected && !(currentPage === "schedule") && (
           <button onClick={handleScheduleSubmit} className="schedule--button">
             Submit
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -32,7 +32,7 @@ export default function CoursePicker({ data, setData }) {
             onChange={handleInput}
           />
           <br />
-          <Link className="button button-link form-button" to="/select-course">
+          <Link className="button button-link form-button" to="/set-schedule">
             Submit
           </Link>
         </div>
