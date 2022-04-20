@@ -36,16 +36,16 @@ const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
             </button>{" "}
             and when you’re about to lose your streak.
           </div>
-          {/* <Link className="button button-link meet-oriion--button" to="/popup">
+          <Link className="button button-link meet-oriion--button" to="/popup">
             Turn on Notifications
           </Link>
           <Link
             className="notifications--opt-out-link"
-            onClick={() => setNotificationFrequency('never')}
+            onClick={() => setNotificationFrequency("never")}
             to="/popup"
           >
             Not Now
-          </Link> */}
+          </Link>
         </div>
       </div>
     </div>

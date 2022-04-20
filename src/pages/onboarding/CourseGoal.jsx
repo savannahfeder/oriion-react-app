@@ -1,18 +1,10 @@
 import React from "react";
 import TopBarPageSpecific from "../../components/topbar/TopBarPageSpecific.jsx";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
-export default function CoursePicker(props) {
-  let history = useHistory();
-  const handleGoalSubmit = (event) => {
-    event.preventDefault();
-    console.log("Submitted!");
-    history.push("/set-schedule");
-  };
-
+export default function CoursePicker({ data, setData }) {
   const handleInput = (e) => {
-    props.setData((prevData) => {
+    setData((prevData) => {
       return {
         ...prevData,
         courseGoal: e.target.value,
@@ -30,7 +22,7 @@ export default function CoursePicker(props) {
           <strong>guiding reason behind why you're taking the course.</strong>{" "}
           Make sure it's meaningful and time-based.
         </p>
-        <form form_id="course-goal--form" onSubmit={handleGoalSubmit}>
+        <div>
           <input
             className="input-field course-goal--field"
             type="text"
@@ -40,12 +32,10 @@ export default function CoursePicker(props) {
             onChange={handleInput}
           />
           <br />
-          <input
-            className="button form-button course-goal--button"
-            type="submit"
-            value="Submit"
-          />
-        </form>
+          <Link className="button button-link form-button" to="/select-course">
+            Submit
+          </Link>
+        </div>
       </div>
     </div>
   );

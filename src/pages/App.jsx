@@ -52,9 +52,8 @@ const App = () => {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <CoursePicker />
-          {/* {isNewUser && <MeetOriion />}
-          {!isNewUser && <Home data={data} setData={setData} />} */}
+          {isNewUser && <MeetOriion />}
+          {!isNewUser && <Home data={data} setData={setData} />}
         </Route>
         <Route path="/get-started">
           <MeetOriion />
@@ -63,7 +62,7 @@ const App = () => {
           <Home data={data} setData={setData} />
         </Route>
         <Route exact path="/select-course">
-          <CoursePicker data={data} setData={setData} />
+          <CoursePicker />
         </Route>
         <Route path="/set-goal">
           <CourseGoal data={data} setData={setData} />
