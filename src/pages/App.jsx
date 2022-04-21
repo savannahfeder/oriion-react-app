@@ -12,13 +12,27 @@ const App = () => {
     courseName: null,
     courseURL: null,
     courseGoal: null,
+    streak: 0,
   };
 
   const [notificationFrequency, setNotificationFrequency] = useState("daily");
 
-  const [isNewUser, setIsNewUser] = useState(
-    localStorage.getItem("data") ? false : true
-  );
+  const checksIfNewUser = () => {
+    const storage = localStorage.getItem("data");
+    if (storage) {
+      console.log(storage.courseGoal); //!!! returns as undefined
+      const isAnyUserInfoInputted = storage.courseName || storage.courseGoal;
+      return !isAnyUserInfoInputted;
+    }
+    return true;
+  };
+
+  console.log(checksIfNewUser());
+  const [isNewUser, setIsNewUser] = useState(checksIfNewUser());
+
+  //returns empty array
+  const testData = localStorage.getItem("data");
+  console.log(testData);
 
   // sets data to user data retrieved from local storage, or newUserObject if no data is stored
   const [data, setData] = useState(
@@ -35,7 +49,8 @@ const App = () => {
       text: String(data.streak),
     },
     () => {
-      console.log("Set badge text successfully!");
+      // console.log("set badge text to...");
+      console.log(data.streak);
     }
   );
 
