@@ -9,16 +9,26 @@ import MeetOriion from "./onboarding/MeetOriion.jsx";
 
 const App = () => {
   const newUserObject = {
-    courseName: null,
-    courseURL: null,
     courseGoal: null,
+    streak: 0,
   };
+  const [userCourses, setUserCourses] = useState([]);
 
   const [notificationFrequency, setNotificationFrequency] = useState("daily");
 
-  const [isNewUser, setIsNewUser] = useState(
-    localStorage.getItem("data") ? false : true
-  );
+  // returns empty array
+  const testData = localStorage.getItem("data");
+  console.log("Local storage returns...");
+  console.log(testData);
+
+  const checksIfNewUser = () => {
+    const storage = JSON.parse(localStorage.getItem("data"));
+    if (storage) {
+      const isAnyUserInfoInputted = storage.courseGoal; // TODO: should also check storage for any courses or schedule inputted
+      return !isAnyUserInfoInputted;
+    }
+    return true;
+  };
 
   // sets data to user data retrieved from local storage, or newUserObject if no data is stored
   const [data, setData] = useState(
@@ -30,12 +40,16 @@ const App = () => {
     localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
 
+  console.log("checking if new user...");
+  console.log(checksIfNewUser());
+  const [isNewUser, setIsNewUser] = useState(checksIfNewUser());
+
   chrome.action.setBadgeText(
     {
       text: String(data.streak),
     },
     () => {
-      console.log("Set badge text successfully!");
+      console.log("Badge text set successfully!");
     }
   );
 
@@ -53,7 +67,10 @@ const App = () => {
           <Home data={data} setData={setData} />
         </Route>
         <Route exact path="/select-course">
-          <CoursePicker />
+          <CoursePicker
+            userCourses={userCourses}
+            setUserCourses={setUserCourses}
+          />
         </Route>
         <Route path="/set-goal">
           <CourseGoal data={data} setData={setData} />

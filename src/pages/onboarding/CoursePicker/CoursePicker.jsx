@@ -3,7 +3,7 @@ import TopBarPageSpecific from "../../../components/topbar/TopBarPageSpecific.js
 import Tag from "./Tag.jsx";
 import { Link } from "react-router-dom";
 
-const CoursePicker = () => {
+const CoursePicker = ({ userCourses, setUserCourses }) => {
   // TODO: refactor to be objects that include both the site name and url, or hash table / dictionary
   const courses = [
     "udemy",
@@ -12,7 +12,6 @@ const CoursePicker = () => {
     "scrimba",
     "freecodecamp",
   ];
-  const [userCourses, setUserCourses] = useState([]);
   const handleTagToggle = (event, course) => {
     setUserCourses((prevCourses) => {
       const courses = [...prevCourses];

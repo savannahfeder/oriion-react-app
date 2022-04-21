@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ScheduleWeekdayBlock from "./ScheduleWeekdayBlock.jsx";
 import ScheduleWeekdayInput from "./ScheduleWeekdayInput.jsx";
 
-const Schedule = ({ data, setData, currentPage }) => {
+const Schedule = ({ currentPage }) => {
   const [schedule, setSchedule] = useState({
     sunday: [],
     monday: [],
