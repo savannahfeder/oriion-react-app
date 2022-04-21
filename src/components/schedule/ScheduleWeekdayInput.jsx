@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export default function ScheduleWeekdayInput({
-  data,
-  setData,
+  schedule,
+  setSchedule,
   weekday,
   handleToggle,
 }) {
@@ -12,25 +12,25 @@ export default function ScheduleWeekdayInput({
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setData((prevData) => {
-      let timeSlotsArray = [...prevData[currentWeekday]];
-      if (name === 'field-one') {
+    setSchedule((prevSchedule) => {
+      let timeSlotsArray = [...prevSchedule[currentWeekday]];
+      if (name === "field-one") {
         timeSlotsArray[0] = value;
       } else {
         timeSlotsArray[1] = value;
       }
       return {
-        ...prevData,
+        ...prevSchedule,
         [currentWeekday]: timeSlotsArray,
       };
     });
-    console.log(data);
+    console.log(schedule);
   };
 
   const resetWeekdayInputs = (e) => {
-    setData((prevData) => {
+    setSchedule((prevSchedule) => {
       return {
-        ...prevData,
+        ...prevSchedule,
         [currentWeekday]: [],
       };
     });
@@ -40,24 +40,28 @@ export default function ScheduleWeekdayInput({
 
   return (
     <li class="day-input">
-      {weekday}{' '}
+      {weekday}{" "}
       <input
         class="input-time"
         type="text"
         name="field-one"
         placeholder={
-          data[currentWeekday].length > 0 ? data[currentWeekday][0] : 'hh:mm'
+          schedule[currentWeekday].length > 0
+            ? schedule[currentWeekday][0]
+            : "hh:mm"
         }
         // value={props.data[currentWeekday] ? props.data[currentWeekday][0] : null} //TODO: change to controlled component
         onChange={handleInput}
-      />{' '}
-      to{' '}
+      />{" "}
+      to{" "}
       <input
         class="input-time"
         type="text"
         name="field-two"
         placeholder={
-          data[currentWeekday].length > 1 ? data[currentWeekday][1] : 'hh:mm'
+          schedule[currentWeekday].length > 1
+            ? schedule[currentWeekday][1]
+            : "hh:mm"
         }
         // value={props.data[currentWeekday] ? props.data[currentWeekday][1] : null} //TODO: change to controlled component
         onChange={handleInput}

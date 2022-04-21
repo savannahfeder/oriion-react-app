@@ -12,15 +12,6 @@ const App = () => {
     courseName: null,
     courseURL: null,
     courseGoal: null,
-    courseSchedule: null,
-    streak: 0,
-    sunday: [],
-    monday: [],
-    tuesday: [],
-    wednesday: [],
-    thursday: [],
-    friday: [],
-    saturday: [],
   };
 
   const [notificationFrequency, setNotificationFrequency] = useState("daily");
@@ -68,7 +59,7 @@ const App = () => {
           <CourseGoal data={data} setData={setData} />
         </Route>
         <Route path="/set-schedule">
-          <ScheduleSelection data={data} setData={setData} />
+          <ScheduleSelection />
         </Route>
         <Route path="/notifications">
           <Notifications

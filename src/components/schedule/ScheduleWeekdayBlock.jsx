@@ -1,30 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function ScheduleWeekdayBlock({
-  data,
   weekday,
-  setData,
   text,
   handleToggle,
   isWeekdaySelected,
+  schedule,
+  setSchedule,
 }) {
-  const hasInputtedTimeSlots = data[weekday] ? data[weekday].length > 1 : false;
+  const hasInputtedTimeSlots = schedule[weekday]
+    ? schedule[weekday].length > 1
+    : false;
   const isSelectedAndInputtedTimeSlots =
     isWeekdaySelected && hasInputtedTimeSlots;
 
   const addClassNameForStyling = () => {
     if (isSelectedAndInputtedTimeSlots) {
-      return ' selected editing';
+      return " selected editing";
     } else if (hasInputtedTimeSlots) {
-      return ' selected';
+      return " selected";
     } else if (isWeekdaySelected) {
-      return ' editing';
+      return " editing";
     } else {
-      return '';
+      return "";
     }
   };
 
-  let className = 'date-item pointer' + addClassNameForStyling();
+  let className = "date-item pointer" + addClassNameForStyling();
 
   return (
     <li onClick={(e) => handleToggle(e, weekday)} className={className}>
