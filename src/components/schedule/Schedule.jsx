@@ -4,6 +4,16 @@ import ScheduleWeekdayBlock from "./ScheduleWeekdayBlock.jsx";
 import ScheduleWeekdayInput from "./ScheduleWeekdayInput.jsx";
 
 const Schedule = ({ data, setData, currentPage }) => {
+  const [schedule, setSchedule] = useState({
+    sunday: [],
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+    saturday: [],
+  });
+
   const [selectedWeekdays, setSelectedWeekdays] = useState({
     sunday: false,
     monday: false,
@@ -59,56 +69,56 @@ const Schedule = ({ data, setData, currentPage }) => {
           weekday="sunday"
           text="S"
           handleToggle={handleToggle}
-          data={data}
-          setData={setData}
+          schedule={schedule}
+          setSchedule={setSchedule}
           isWeekdaySelected={selectedWeekdays.sunday}
         />
         <ScheduleWeekdayBlock
           weekday="monday"
           text="M"
           handleToggle={handleToggle}
-          data={data}
-          setData={setData}
+          schedule={schedule}
+          setSchedule={setSchedule}
           isWeekdaySelected={selectedWeekdays.monday}
         />
         <ScheduleWeekdayBlock
           weekday="tuesday"
           text="T"
           handleToggle={handleToggle}
-          data={data}
-          setData={setData}
+          schedule={schedule}
+          setSchedule={setSchedule}
           isWeekdaySelected={selectedWeekdays.tuesday}
         />
         <ScheduleWeekdayBlock
           weekday="wednesday"
           text="W"
           handleToggle={handleToggle}
-          data={data}
-          setData={setData}
+          schedule={schedule}
+          setSchedule={setSchedule}
           isWeekdaySelected={selectedWeekdays.wednesday}
         />
         <ScheduleWeekdayBlock
           weekday="thursday"
           text="T"
           handleToggle={handleToggle}
-          data={data}
-          setData={setData}
+          schedule={schedule}
+          setSchedule={setSchedule}
           isWeekdaySelected={selectedWeekdays.thursday}
         />
         <ScheduleWeekdayBlock
           weekday="friday"
           text="F"
           handleToggle={handleToggle}
-          data={data}
-          setData={setData}
+          schedule={schedule}
+          setSchedule={setSchedule}
           isWeekdaySelected={selectedWeekdays.friday}
         />
         <ScheduleWeekdayBlock
           weekday="saturday"
           text="S"
           handleToggle={handleToggle}
-          data={data}
-          setData={setData}
+          schedule={schedule}
+          setSchedule={setSchedule}
           isWeekdaySelected={selectedWeekdays.saturday}
         />
       </ul>
@@ -117,56 +127,56 @@ const Schedule = ({ data, setData, currentPage }) => {
           {selectedWeekdays.sunday && (
             <ScheduleWeekdayInput
               weekday="Sunday"
-              data={data}
-              setData={setData}
+              schedule={schedule}
+              setSchedule={setSchedule}
               handleToggle={handleToggle}
             />
           )}
           {selectedWeekdays.monday && (
             <ScheduleWeekdayInput
               weekday="Monday"
-              data={data}
-              setData={setData}
+              schedule={schedule}
+              setSchedule={setSchedule}
               handleToggle={handleToggle}
             />
           )}
           {selectedWeekdays.tuesday && (
             <ScheduleWeekdayInput
               weekday="Tuesday"
-              data={data}
-              setData={setData}
+              schedule={schedule}
+              setSchedule={setSchedule}
               handleToggle={handleToggle}
             />
           )}
           {selectedWeekdays.wednesday && (
             <ScheduleWeekdayInput
               weekday="Wednesday"
-              data={data}
-              setData={setData}
+              schedule={schedule}
+              setSchedule={setSchedule}
               handleToggle={handleToggle}
             />
           )}
           {selectedWeekdays.thursday && (
             <ScheduleWeekdayInput
               weekday="Thursday"
-              data={data}
-              setData={setData}
+              schedule={schedule}
+              setSchedule={setSchedule}
               handleToggle={handleToggle}
             />
           )}
           {selectedWeekdays.friday && (
             <ScheduleWeekdayInput
               weekday="Friday"
-              data={data}
-              setData={setData}
+              schedule={schedule}
+              setSchedule={setSchedule}
               handleToggle={handleToggle}
             />
           )}
           {selectedWeekdays.saturday && (
             <ScheduleWeekdayInput
               weekday="Saturday"
-              data={data}
-              setData={setData}
+              schedule={schedule}
+              setSchedule={setSchedule}
               handleToggle={handleToggle}
             />
           )}
