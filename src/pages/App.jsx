@@ -12,17 +12,28 @@ const App = () => {
     courseGoal: null,
     streak: 0,
   };
+
   const [userCourses, setUserCourses] = useState([]);
 
   const [notificationFrequency, setNotificationFrequency] = useState("daily");
 
-  // returns empty array
-  const testData = localStorage.getItem("data");
-  console.log("Local storage returns...");
-  console.log(testData);
+  const saveToLocalStorage = (key, value) => {
+    chrome.storage.sync.set(
+      {
+        [key]: value,
+      },
+      () => console.log("Value is set to " + value)
+    );
+  };
+
+  const fetchFromLocalStorage = (key) => {
+    const value = chrome.storage.sync.get(["key"]);
+    console.log("Value is currently " + value);
+    return value;
+  };
 
   const checksIfNewUser = () => {
-    const storage = JSON.parse(localStorage.getItem("data"));
+    const storage = fetchFromLocalStorage("data");
     if (storage) {
       const isAnyUserInfoInputted = storage.courseGoal; // TODO: should also check storage for any courses or schedule inputted
       return !isAnyUserInfoInputted;
@@ -31,17 +42,14 @@ const App = () => {
   };
 
   // sets data to user data retrieved from local storage, or newUserObject if no data is stored
+  // !!!Problem: because the fetchFromLocalStorage("data") is a promise, this code is always going to make a newUserObject
   const [data, setData] = useState(
-    () => JSON.parse(localStorage.getItem("data")) || newUserObject
+    () => fetchFromLocalStorage("data") || newUserObject
   );
 
   // storage and retrieval of user data from local storage
-  useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(data));
-  }, [data]);
+  saveToLocalStorage("data", data);
 
-  console.log("checking if new user...");
-  console.log(checksIfNewUser());
   const [isNewUser, setIsNewUser] = useState(checksIfNewUser());
 
   chrome.action.setBadgeText(
