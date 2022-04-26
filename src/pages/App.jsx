@@ -17,7 +17,7 @@ const App = () => {
 
   const [notificationFrequency, setNotificationFrequency] = useState("daily");
 
-  const saveToLocalStorage = (key, value) => {
+  const saveToLocalStorage = async (key, value) => {
     chrome.storage.sync.set(
       {
         [key]: value,
@@ -26,8 +26,8 @@ const App = () => {
     );
   };
 
-  const fetchFromLocalStorage = (key) => {
-    const value = chrome.storage.sync.get(["key"]);
+  const fetchFromLocalStorage = async (key) => {
+    const value = await chrome.storage.sync.get(["key"]);
     console.log("Value is currently " + value);
     return value;
   };
@@ -43,6 +43,8 @@ const App = () => {
 
   // sets data to user data retrieved from local storage, or newUserObject if no data is stored
   // !!!Problem: because the fetchFromLocalStorage("data") is a promise, this code is always going to make a newUserObject
+  // - understand UseEffect
+  // - read article: https://blog.logrocket.com/using-localstorage-react-hooks/
   const [data, setData] = useState(
     () => fetchFromLocalStorage("data") || newUserObject
   );
@@ -50,7 +52,7 @@ const App = () => {
   // storage and retrieval of user data from local storage
   saveToLocalStorage("data", data);
 
-  const [isNewUser, setIsNewUser] = useState(checksIfNewUser());
+  const [isNewUser, setIsNewUser] = useState(true);
 
   chrome.action.setBadgeText(
     {
