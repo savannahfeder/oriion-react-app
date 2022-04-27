@@ -24,7 +24,6 @@ export default function ScheduleWeekdayInput({
         [currentWeekday]: timeSlotsArray,
       };
     });
-    console.log(schedule);
   };
 
   const resetWeekdayInputs = (e) => {

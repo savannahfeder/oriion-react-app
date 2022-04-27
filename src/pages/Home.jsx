@@ -3,7 +3,7 @@ import TopBar from "../components/topbar/TopBar.jsx";
 import Schedule from "../components/schedule/Schedule.jsx";
 import BarChart from "../components/BarChart.jsx";
 
-const Popup = ({ data, setData }) => {
+const Home = ({ data, setData, schedule, setSchedule }) => {
   return (
     <div className="home">
       <TopBar />
@@ -19,7 +19,11 @@ const Popup = ({ data, setData }) => {
           </p>
         </div>
         <p className="bold">Daily Schedule</p>
-        <Schedule currentPage="home" />
+        <Schedule
+          currentPage="home"
+          schedule={schedule}
+          setSchedule={setSchedule}
+        />
         <p className="bold">Weekly Analytics</p>
         <BarChart />
       </div>
@@ -27,4 +31,4 @@ const Popup = ({ data, setData }) => {
   );
 };
 
-export default Popup;
+export default Home;

@@ -16,7 +16,6 @@ const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
       }
     });
   };
-  console.log(notificationFrequency);
 
   return (
     <div className="meet-oriion">

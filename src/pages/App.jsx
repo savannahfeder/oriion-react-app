@@ -8,51 +8,48 @@ import Home from "./Home.jsx";
 import MeetOriion from "./onboarding/MeetOriion.jsx";
 
 const App = () => {
-  const newUserObject = {
-    courseGoal: null,
-    streak: 0,
-  };
-
-  const [userCourses, setUserCourses] = useState([]);
-
-  const [notificationFrequency, setNotificationFrequency] = useState("daily");
-
-  const saveToLocalStorage = async (key, value) => {
-    chrome.storage.sync.set(
-      {
-        [key]: value,
-      },
-      () => console.log("Value is set to " + value)
-    );
-  };
-
-  const fetchFromLocalStorage = async (key) => {
-    const value = await chrome.storage.sync.get(["key"]);
-    console.log("Value is currently " + value);
-    return value;
-  };
-
-  const checksIfNewUser = () => {
-    const storage = fetchFromLocalStorage("data");
-    if (storage) {
-      const isAnyUserInfoInputted = storage.courseGoal; // TODO: should also check storage for any courses or schedule inputted
-      return !isAnyUserInfoInputted;
-    }
-    return true;
-  };
-
-  // sets data to user data retrieved from local storage, or newUserObject if no data is stored
-  // !!!Problem: because the fetchFromLocalStorage("data") is a promise, this code is always going to make a newUserObject
-  // - understand UseEffect
-  // - read article: https://blog.logrocket.com/using-localstorage-react-hooks/
+  // retrieves data from local storage, or initializes it if does not exist
+  const [userCourses, setUserCourses] = useState(
+    JSON.parse(localStorage.getItem("userCourses")) || []
+  );
+  const [notificationFrequency, setNotificationFrequency] = useState(
+    JSON.parse(localStorage.getItem("notificationFrequency")) || "daily"
+  );
   const [data, setData] = useState(
-    () => fetchFromLocalStorage("data") || newUserObject
+    () =>
+      JSON.parse(localStorage.getItem("data")) || {
+        courseGoal: null,
+        streak: 0,
+      }
+  );
+  const [schedule, setSchedule] = useState(
+    JSON.parse(localStorage.getItem("schedule")) || {
+      sunday: [],
+      monday: [],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+    }
   );
 
-  // storage and retrieval of user data from local storage
-  saveToLocalStorage("data", data);
+  // storage of user data in local storage
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("userCourses", JSON.stringify(userCourses));
+    localStorage.setItem(
+      "notificationFrequency",
+      JSON.stringify(notificationFrequency)
+    );
+    localStorage.setItem("schedule", JSON.stringify(schedule));
+  }, [data, userCourses, notificationFrequency, schedule]);
 
-  const [isNewUser, setIsNewUser] = useState(true);
+  const isExistingUser =
+    userCourses.length > 0 ||
+    notificationFrequency !== "daily" ||
+    data.courseGoal !== null ||
+    data.streak > 0;
 
   chrome.action.setBadgeText(
     {
@@ -67,14 +64,26 @@ const App = () => {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          {isNewUser && <MeetOriion />}
-          {!isNewUser && <Home data={data} setData={setData} />}
+          {!isExistingUser && <MeetOriion />}
+          {isExistingUser && (
+            <Home
+              data={data}
+              setData={setData}
+              schedule={schedule}
+              setSchedule={setSchedule}
+            />
+          )}
         </Route>
         <Route path="/get-started">
           <MeetOriion />
         </Route>
         <Route exact path="/popup">
-          <Home data={data} setData={setData} />
+          <Home
+            data={data}
+            setData={setData}
+            schedule={schedule}
+            setSchedule={setSchedule}
+          />
         </Route>
         <Route exact path="/select-course">
           <CoursePicker
@@ -86,7 +95,7 @@ const App = () => {
           <CourseGoal data={data} setData={setData} />
         </Route>
         <Route path="/set-schedule">
-          <ScheduleSelection />
+          <ScheduleSelection schedule={schedule} setSchedule={setSchedule} />
         </Route>
         <Route path="/notifications">
           <Notifications

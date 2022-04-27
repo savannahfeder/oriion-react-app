@@ -4,7 +4,6 @@ import Tag from "./Tag.jsx";
 import { Link } from "react-router-dom";
 
 const CoursePicker = ({ userCourses, setUserCourses }) => {
-  // TODO: refactor to be objects that include both the site name and url, or hash table / dictionary
   const courses = [
     "udemy",
     "codeacademy",
@@ -27,7 +26,6 @@ const CoursePicker = ({ userCourses, setUserCourses }) => {
       return courses;
     });
   };
-  console.log(userCourses);
 
   const atLeastOneCourseSelected = userCourses.length > 0;
   // disabled button styling if no courses selected

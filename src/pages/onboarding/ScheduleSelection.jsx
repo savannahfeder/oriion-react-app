@@ -13,7 +13,11 @@ export default function ScheduleSelection({ schedule, setSchedule }) {
           <strong>importance of taking this step.</strong> Also mention to add
           to calendar, and will determine when popups appear if enabled.
         </p>
-        <Schedule currentPage="schedule" />
+        <Schedule
+          currentPage="schedule"
+          schedule={schedule}
+          setSchedule={setSchedule}
+        />
       </div>
     </div>
   );
