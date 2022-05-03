@@ -1,6 +1,6 @@
-import React from "react";
-import TopBarPageSpecific from "../../components/topbar/TopBarPageSpecific.jsx";
-import Schedule from "../../components/schedule/Schedule.jsx";
+import React from 'react';
+import TopBarPageSpecific from '../../components/topbar/TopBarPageSpecific.jsx';
+import Schedule from '../../components/schedule/Schedule.jsx';
 
 export default function ScheduleSelection({ schedule, setSchedule }) {
   return (
@@ -9,7 +9,7 @@ export default function ScheduleSelection({ schedule, setSchedule }) {
       <div className="schedule-selection--container">
         <p className="bold schedule-selection--prompt">Daily Schedule</p>
         <p className="small-light schedule-selection--explanation">
-          Evidence-backed explanation on the{" "}
+          Evidence-backed explanation on the{' '}
           <strong>importance of taking this step.</strong> Also mention to add
           to calendar, and will determine when popups appear if enabled.
         </p>

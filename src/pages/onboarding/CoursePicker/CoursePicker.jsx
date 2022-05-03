@@ -1,16 +1,29 @@
-import React, { useState } from "react";
-import TopBarPageSpecific from "../../../components/topbar/TopBarPageSpecific.jsx";
-import Tag from "./Tag.jsx";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import TopBarPageSpecific from '../../../components/topbar/TopBarPageSpecific.jsx';
+import Tag from './Tag.jsx';
+import { Link } from 'react-router-dom';
 
 const CoursePicker = ({ userCourses, setUserCourses }) => {
   const courses = [
-    "udemy",
-    "codeacademy",
-    "coursera",
-    "scrimba",
-    "freecodecamp",
+    'udemy',
+    'codeacademy',
+    'coursera',
+    'scrimba',
+    'freecodecamp',
   ];
+
+  const saveToLocalStorage = (e) => {
+    chrome.storage.sync.set(
+      {
+        userCourses: userCourses,
+      },
+      () => {
+        console.log('userCourses has been set to the following in storage...');
+        console.log(userCourses);
+      }
+    );
+  };
+
   const handleTagToggle = (event, course) => {
     setUserCourses((prevCourses) => {
       const courses = [...prevCourses];
@@ -28,12 +41,13 @@ const CoursePicker = ({ userCourses, setUserCourses }) => {
   };
 
   const atLeastOneCourseSelected = userCourses.length > 0;
+
   // disabled button styling if no courses selected
   let styles;
   if (atLeastOneCourseSelected) {
-    styles = "button couse-picker--submit-button button-link";
+    styles = 'button couse-picker--submit-button button-link';
   } else if (!atLeastOneCourseSelected) {
-    styles = "button couse-picker--submit-button button-link disabled";
+    styles = 'button couse-picker--submit-button button-link disabled';
   }
 
   return (
@@ -50,7 +64,7 @@ const CoursePicker = ({ userCourses, setUserCourses }) => {
             />
           ))}
         </div>
-        <Link className={styles} to="/set-goal">
+        <Link onClick={saveToLocalStorage} className={styles} to="/set-goal">
           Submit
         </Link>
       </div>

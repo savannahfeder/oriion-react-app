@@ -1,29 +1,27 @@
-import { Route, Switch } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import CoursePicker from "./onboarding/CoursePicker/CoursePicker.jsx";
-import CourseGoal from "./onboarding/CourseGoal.jsx";
-import Notifications from "./onboarding/Notifications.jsx";
-import ScheduleSelection from "./onboarding/ScheduleSelection.jsx";
-import Home from "./Home.jsx";
-import MeetOriion from "./onboarding/MeetOriion.jsx";
+import { Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import CoursePicker from './onboarding/CoursePicker/CoursePicker.jsx';
+import CourseGoal from './onboarding/CourseGoal.jsx';
+import Notifications from './onboarding/Notifications.jsx';
+import ScheduleSelection from './onboarding/ScheduleSelection.jsx';
+import Home from './Home.jsx';
+import MeetOriion from './onboarding/MeetOriion.jsx';
 
 const App = () => {
-  // retrieves data from local storage, or initializes it if does not exist
   const [userCourses, setUserCourses] = useState(
-    JSON.parse(localStorage.getItem("userCourses")) || []
+    JSON.parse(localStorage.getItem('userCourses')) || []
   );
+
   const [notificationFrequency, setNotificationFrequency] = useState(
-    JSON.parse(localStorage.getItem("notificationFrequency")) || "daily"
+    JSON.parse(localStorage.getItem('notificationFrequency')) || 'daily'
   );
-  const [data, setData] = useState(
-    () =>
-      JSON.parse(localStorage.getItem("data")) || {
-        courseGoal: null,
-        streak: 0,
-      }
-  );
+
+  // !!! change to fetching from local storage
+  const [courseGoal, setCourseGoal] = useState('My course goal');
+  const [streak, setStreak] = useState(0);
+
   const [schedule, setSchedule] = useState(
-    JSON.parse(localStorage.getItem("schedule")) || {
+    JSON.parse(localStorage.getItem('schedule')) || {
       sunday: [],
       monday: [],
       tuesday: [],
@@ -34,29 +32,18 @@ const App = () => {
     }
   );
 
-  // storage of user data in local storage
-  useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(data));
-    localStorage.setItem("userCourses", JSON.stringify(userCourses));
-    localStorage.setItem(
-      "notificationFrequency",
-      JSON.stringify(notificationFrequency)
-    );
-    localStorage.setItem("schedule", JSON.stringify(schedule));
-  }, [data, userCourses, notificationFrequency, schedule]);
-
   const isExistingUser =
     userCourses.length > 0 ||
-    notificationFrequency !== "daily" ||
-    data.courseGoal !== null ||
-    data.streak > 0;
+    notificationFrequency !== 'daily' ||
+    courseGoal !== null ||
+    streak > 0;
 
   chrome.action.setBadgeText(
     {
-      text: String(data.streak),
+      text: String(streak),
     },
     () => {
-      console.log("Badge text set successfully!");
+      console.log('Badge text set successfully!');
     }
   );
 
@@ -67,8 +54,10 @@ const App = () => {
           {!isExistingUser && <MeetOriion />}
           {isExistingUser && (
             <Home
-              data={data}
-              setData={setData}
+              streak={streak}
+              setStreak={setStreak}
+              courseGoal={courseGoal}
+              setCourseGoal={setCourseGoal}
               schedule={schedule}
               setSchedule={setSchedule}
             />
@@ -77,14 +66,6 @@ const App = () => {
         <Route path="/get-started">
           <MeetOriion />
         </Route>
-        <Route exact path="/popup">
-          <Home
-            data={data}
-            setData={setData}
-            schedule={schedule}
-            setSchedule={setSchedule}
-          />
-        </Route>
         <Route exact path="/select-course">
           <CoursePicker
             userCourses={userCourses}
@@ -92,7 +73,7 @@ const App = () => {
           />
         </Route>
         <Route path="/set-goal">
-          <CourseGoal data={data} setData={setData} />
+          <CourseGoal courseGoal={courseGoal} setCourseGoal={setCourseGoal} />
         </Route>
         <Route path="/set-schedule">
           <ScheduleSelection schedule={schedule} setSchedule={setSchedule} />
