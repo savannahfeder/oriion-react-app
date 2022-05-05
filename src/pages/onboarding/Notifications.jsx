@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TopBar from "../../components/topbar/TopBar.jsx";
 import { Link } from "react-router-dom";
+import { sendEmail } from "../../services/email-service.js";
 
 const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
   const toggleFrequency = () => {
@@ -16,6 +17,23 @@ const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
       }
     });
   };
+
+  const setNotification = () => {
+    createAlarm();
+    
+    chrome.alarms.onAlarm.addListener((alarm) => {
+      sendEmail();
+    });
+  }
+
+  const createAlarm = () => {
+    chrome.alarms.create(
+      {
+        when: Date.now(),
+        periodInMinutes: 0.5
+      }
+    );
+  }
 
   return (
     <div className="meet-oriion">
@@ -35,7 +53,10 @@ const Notifications = ({ notificationFrequency, setNotificationFrequency }) => {
             </button>{" "}
             and when you’re about to lose your streak.
           </div>
-          <Link className="button button-link meet-oriion--button" to="/popup">
+          <Link 
+            className="button button-link meet-oriion--button"
+            onClick={() => setNotification()}
+            to="/popup">
             Turn on Notifications
           </Link>
           <Link
