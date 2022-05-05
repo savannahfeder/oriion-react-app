@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { sendEmail } from "../../services/email-service.js";
 import ScheduleWeekdayBlock from "./ScheduleWeekdayBlock.jsx";
 import ScheduleWeekdayInput from "./ScheduleWeekdayInput.jsx";
 
@@ -21,6 +22,7 @@ const Schedule = ({ schedule, setSchedule, currentPage }) => {
     //   // history.push("/notifications");
     // } else {
     deselectAllToggles();
+    sendEmail();
   };
 
   const handleToggle = (e, weekday) => {
