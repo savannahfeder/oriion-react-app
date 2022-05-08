@@ -1,42 +1,95 @@
 chrome.runtime.onInstalled.addListener(() => {
   console.log('This is a first install!');
-  const datesTakenCourse = new Set();
-  console.log(Window);
-
-  chrome.alarms.create('handleStreak', { periodInMinutes: 0.1 });
+  setBadgeText(0);
+  instantiateStreak();
+  instantiateDatesTakenCourseList();
+  chrome.alarms.create('handleStreakAlarm', { periodInMinutes: 0.1 }); // should run every 15 mins
 });
 
-// make alarm that triggers every 15 minutes
-chrome.alarms.onAlarm.addListener((alarm) => {
-  getCourseUrls();
-  console.log(alarm);
+chrome.alarms.onAlarm.addListener(async (alarm) => {
+  handleStreak();
 });
 
-const getCourseUrls = () => {
-  userCourses = JSON.parse(localStorage.getItem('data'));
-  console.log(userCourses);
+const getUserCourses = async () => {
+  const userCoursesObject = await chrome.storage.sync.get(['userCourses']);
+  // const courseURLs = userCoursesObject.userCourses.map(
+  //   (course) => `*://*.${course}/*`
+  // );
+  return userCoursesObject.userCourses;
+};
+
+const getCurrentTab = async () => {
+  let queryOptions = { active: true, currentWindow: true };
+  let [tab] = await chrome.tabs.query(queryOptions);
+  return tab;
 };
 
 // if user visits course url for first time that day, increments streak by 1
 const handleStreak = () => {
-  if (!isUserTakingCourse()) return;
+  if (!isUserOnCourseURL()) return;
   const currentDate = new Date().toLocaleDateString();
-  if (!dates.has(currentDate)) {
-    dates.add(currentDate);
-    incrementStreak();
-  }
+  chrome.storage.sync.get(['datesTakenCourse'], (result) => {
+    const datesTakenCourse = result.datesTakenCourse;
+    if (!datesTakenCourse.has(currentDate)) {
+      datesTakenCourse.add(currentDate);
+      incrementStreak();
+      // add: function that updates datesTakenCourse in storage
+    }
+  });
 };
 
-const isUserTakingCourse = () => {
-  const currentURL = chrome.runtime.getURL();
-  // TODO: retreives course URL from app.js and checks if prexises match
-  const courseURL = ''; //TODO
-  return currentURL === courseURL;
+const isUserOnCourseURL = async () => {
+  const userCourses = await getUserCourses();
+  const currentTab = await getCurrentTab();
+  const currentURL = currentTab.url;
+
+  userCourses.forEach((course) => {
+    if (currentURL.includes(course)) {
+      return true;
+    }
+  });
+  return false;
 };
 
-// TODO: somehow import streak from app component (streak is in userData; but may
-// be wise to extract it out into its own piece of state), export it, and send
-// a message to app to increment streak from background script
+const instantiateStreak = () => {
+  chrome.storage.sync.set(
+    {
+      streak: 0,
+    },
+    () => {
+      console.log('Streak instantiated to 0!');
+      setBadgeText(0);
+    }
+  );
+};
+
+const setBadgeText = (streak) => {
+  chrome.action.setBadgeText(
+    {
+      text: String(streak),
+    },
+    () => console.log('Badge text has been set!')
+  );
+};
+
 const incrementStreak = () => {
-  console.log('This should increment the streak!');
+  chrome.storage.sync.get(['streak'], (result) => {
+    const incrementedStreak = result.streak + 1;
+    chrome.storage.sync.set({
+      streak: incrementedStreak,
+    });
+    console.log('Incremented streak to ' + incrementedStreak);
+    setBadgeText(incrementedStreak);
+  });
+};
+
+const instantiateDatesTakenCourseList = () => {
+  // TODO: if already stored in chrome storage, retrieve that instead
+  const datesTakenCourse = new Set();
+  chrome.storage.sync.set(
+    {
+      datesTakenCourse,
+    },
+    () => console.log('Instantiated dates taken course list!')
+  );
 };

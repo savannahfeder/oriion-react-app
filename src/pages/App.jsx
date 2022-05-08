@@ -23,7 +23,6 @@ const App = () => {
     saturday: [],
   });
   let isExistingUser; // brings back to home page every time
-
   // problem: it renders based on whatever the flag is initially set to; resetting isExistingUser at the end doesn't rerender things
 
   useEffect(() => {
@@ -34,20 +33,11 @@ const App = () => {
         setStreak(result.streak ?? streak);
         setSchedule(result.schedule ?? schedule);
         setUserCourses(result.userCourses ?? userCourses);
+        isExistingUser = checksIfExistingUser();
+        console.log(isExistingUser); // returns false !!!
       }
     );
-    isExistingUser = checksIfExistingUser();
-    console.log(isExistingUser);
   }, [isExistingUser]);
-
-  useEffect(() => {
-    chrome.action.setBadgeText(
-      {
-        text: String(streak),
-      },
-      () => console.log('Badge text has been set!')
-    );
-  }, [streak]);
 
   const checksIfExistingUser = () => {
     return (
@@ -62,10 +52,14 @@ const App = () => {
     <div className="App">
       <Switch>
         <Route exact path="/">
+          {/* <Home
+            courseGoal={courseGoal}
+            setCourseGoal={setCourseGoal}
+            schedule={schedule}
+            setSchedule={setSchedule}
+          /> */}
           {isExistingUser && (
             <Home
-              streak={streak}
-              setStreak={setStreak}
               courseGoal={courseGoal}
               setCourseGoal={setCourseGoal}
               schedule={schedule}
