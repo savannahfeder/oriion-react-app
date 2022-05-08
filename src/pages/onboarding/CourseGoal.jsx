@@ -1,15 +1,22 @@
-import React from "react";
-import TopBarPageSpecific from "../../components/topbar/TopBarPageSpecific.jsx";
-import { Link } from "react-router-dom";
+import React from 'react';
+import TopBarPageSpecific from '../../components/topbar/TopBarPageSpecific.jsx';
+import { Link } from 'react-router-dom';
 
-export default function CoursePicker({ data, setData }) {
+export default function CoursePicker({ courseGoal, setCourseGoal }) {
   const handleInput = (e) => {
-    setData((prevData) => {
-      return {
-        ...prevData,
-        courseGoal: e.target.value,
-      };
-    });
+    setCourseGoal(e.target.value);
+  };
+
+  const saveToLocalStorage = (e) => {
+    chrome.storage.sync.set(
+      {
+        courseGoal,
+      },
+      () => {
+        console.log('courseGoal has been set to the following in storage...');
+        console.log(courseGoal);
+      }
+    );
   };
 
   return (
@@ -18,8 +25,8 @@ export default function CoursePicker({ data, setData }) {
       <div className="course-goal--container">
         <p className="bold course-goal--prompt">Set Your Course Goal</p>
         <p className="small-light course-goal--explanation">
-          This should be the{" "}
-          <strong>guiding reason behind why you're taking the course.</strong>{" "}
+          This should be the{' '}
+          <strong>guiding reason behind why you're taking the course.</strong>{' '}
           Make sure it's meaningful and time-based.
         </p>
         <div>
@@ -32,7 +39,11 @@ export default function CoursePicker({ data, setData }) {
             onChange={handleInput}
           />
           <br />
-          <Link className="button button-link form-button" to="/set-schedule">
+          <Link
+            onClick={saveToLocalStorage}
+            className="button button-link form-button"
+            to="/set-schedule"
+          >
             Submit
           </Link>
         </div>

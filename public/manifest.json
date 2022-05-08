@@ -10,7 +10,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["alarms"],
+  "permissions": ["storage, alarms"],
   "action": {
     "default_popup": "popup.html"
   },

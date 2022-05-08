@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import ScheduleWeekdayBlock from "./ScheduleWeekdayBlock.jsx";
-import ScheduleWeekdayInput from "./ScheduleWeekdayInput.jsx";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import ScheduleWeekdayBlock from './ScheduleWeekdayBlock.jsx';
+import ScheduleWeekdayInput from './ScheduleWeekdayInput.jsx';
 
 const Schedule = ({ schedule, setSchedule, currentPage }) => {
   const [selectedWeekdays, setSelectedWeekdays] = useState({
@@ -14,12 +14,21 @@ const Schedule = ({ schedule, setSchedule, currentPage }) => {
     saturday: false,
   });
 
-  // let history = useHistory();
+  const saveToLocalStorage = (e) => {
+    chrome.storage.sync.set(
+      {
+        schedule,
+      },
+      () => {
+        console.log('Schedule has been set to the following in storage...');
+        console.log(schedule);
+      }
+    );
+  };
+
   const handleScheduleSubmit = (event) => {
     event.preventDefault();
-    // if (currentPage === "schedule") {
-    //   // history.push("/notifications");
-    // } else {
+    saveToLocalStorage();
     deselectAllToggles();
   };
 
@@ -173,12 +182,16 @@ const Schedule = ({ schedule, setSchedule, currentPage }) => {
         </div>
       </ul>
       <div className="schedule--button-wrapper">
-        {atLeastOneDaySelected && currentPage === "schedule" && (
-          <Link className="button button-link form-button" to="/notifications">
+        {atLeastOneDaySelected && currentPage === 'schedule' && (
+          <Link
+            onClick={saveToLocalStorage}
+            className="button button-link form-button"
+            to="/"
+          >
             Submit
           </Link>
         )}
-        {atLeastOneDaySelected && !(currentPage === "schedule") && (
+        {atLeastOneDaySelected && !(currentPage === 'schedule') && (
           <button onClick={handleScheduleSubmit} className="schedule--button">
             Submit
           </button>

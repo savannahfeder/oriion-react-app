@@ -1,89 +1,81 @@
-import { Route, Switch } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import CoursePicker from "./onboarding/CoursePicker/CoursePicker.jsx";
-import CourseGoal from "./onboarding/CourseGoal.jsx";
-import Notifications from "./onboarding/Notifications.jsx";
-import ScheduleSelection from "./onboarding/ScheduleSelection.jsx";
-import Home from "./Home.jsx";
-import MeetOriion from "./onboarding/MeetOriion.jsx";
+import { Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import CoursePicker from './onboarding/CoursePicker/CoursePicker.jsx';
+import CourseGoal from './onboarding/CourseGoal.jsx';
+import Notifications from './onboarding/Notifications.jsx';
+import ScheduleSelection from './onboarding/ScheduleSelection.jsx';
+import Home from './Home.jsx';
+import MeetOriion from './onboarding/MeetOriion.jsx';
 
 const App = () => {
-  // retrieves data from local storage, or initializes it if does not exist
-  const [userCourses, setUserCourses] = useState(
-    JSON.parse(localStorage.getItem("userCourses")) || []
-  );
-  const [notificationFrequency, setNotificationFrequency] = useState(
-    JSON.parse(localStorage.getItem("notificationFrequency")) || "daily"
-  );
-  const [data, setData] = useState(
-    () =>
-      JSON.parse(localStorage.getItem("data")) || {
-        courseGoal: null,
-        streak: 0,
-      }
-  );
-  const [schedule, setSchedule] = useState(
-    JSON.parse(localStorage.getItem("schedule")) || {
-      sunday: [],
-      monday: [],
-      tuesday: [],
-      wednesday: [],
-      thursday: [],
-      friday: [],
-      saturday: [],
-    }
-  );
+  const placeholderGoal = 'My course goal';
+  const [courseGoal, setCourseGoal] = useState(placeholderGoal);
+  const [userCourses, setUserCourses] = useState([]);
+  const [notificationFrequency, setNotificationFrequency] = useState('daily');
+  const [streak, setStreak] = useState(0);
+  const [schedule, setSchedule] = useState({
+    sunday: [],
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+    saturday: [],
+  });
+  let isExistingUser; // brings back to home page every time
 
-  // storage of user data in local storage
+  // problem: it renders based on whatever the flag is initially set to; resetting isExistingUser at the end doesn't rerender things
+
   useEffect(() => {
-    localStorage.setItem("data", JSON.stringify(data));
-    localStorage.setItem("userCourses", JSON.stringify(userCourses));
-    localStorage.setItem(
-      "notificationFrequency",
-      JSON.stringify(notificationFrequency)
+    chrome.storage.sync.get(
+      ['courseGoal', 'userCourses', 'streak', 'schedule'],
+      (result) => {
+        setCourseGoal(result.courseGoal ?? courseGoal);
+        setStreak(result.streak ?? streak);
+        setSchedule(result.schedule ?? schedule);
+        setUserCourses(result.userCourses ?? userCourses);
+      }
     );
-    localStorage.setItem("schedule", JSON.stringify(schedule));
-  }, [data, userCourses, notificationFrequency, schedule]);
+    isExistingUser = checksIfExistingUser();
+    console.log(isExistingUser);
+  }, [isExistingUser]);
 
-  const isExistingUser =
-    userCourses.length > 0 ||
-    notificationFrequency !== "daily" ||
-    data.courseGoal !== null ||
-    data.streak > 0;
+  useEffect(() => {
+    chrome.action.setBadgeText(
+      {
+        text: String(streak),
+      },
+      () => console.log('Badge text has been set!')
+    );
+  }, [streak]);
 
-  chrome.action.setBadgeText(
-    {
-      text: String(data.streak),
-    },
-    () => {
-      console.log("Badge text set successfully!");
-    }
-  );
+  const checksIfExistingUser = () => {
+    return (
+      userCourses.length > 0 ||
+      notificationFrequency !== 'daily' ||
+      courseGoal !== placeholderGoal ||
+      streak > 0
+    );
+  };
 
   return (
     <div className="App">
       <Switch>
         <Route exact path="/">
-          {!isExistingUser && <MeetOriion />}
           {isExistingUser && (
             <Home
-              data={data}
-              setData={setData}
+              streak={streak}
+              setStreak={setStreak}
+              courseGoal={courseGoal}
+              setCourseGoal={setCourseGoal}
               schedule={schedule}
               setSchedule={setSchedule}
             />
           )}
+          {!isExistingUser && <MeetOriion />}
         </Route>
         <Route path="/get-started">
           <MeetOriion />
-        </Route>
-        <Route exact path="/popup">
-          <Home
-            data={data}
-            setData={setData}
-            schedule={schedule}
-            setSchedule={setSchedule}
-          />
         </Route>
         <Route exact path="/select-course">
           <CoursePicker
@@ -92,7 +84,7 @@ const App = () => {
           />
         </Route>
         <Route path="/set-goal">
-          <CourseGoal data={data} setData={setData} />
+          <CourseGoal courseGoal={courseGoal} setCourseGoal={setCourseGoal} />
         </Route>
         <Route path="/set-schedule">
           <ScheduleSelection schedule={schedule} setSchedule={setSchedule} />
