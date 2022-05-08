@@ -8,50 +8,60 @@ import Home from './Home.jsx';
 import MeetOriion from './onboarding/MeetOriion.jsx';
 
 const App = () => {
-  const [userCourses, setUserCourses] = useState(
-    JSON.parse(localStorage.getItem('userCourses')) || []
-  );
-
-  const [notificationFrequency, setNotificationFrequency] = useState(
-    JSON.parse(localStorage.getItem('notificationFrequency')) || 'daily'
-  );
-
-  // !!! change to fetching from local storage
-  const [courseGoal, setCourseGoal] = useState('My course goal');
+  const placeholderGoal = 'My course goal';
+  const [courseGoal, setCourseGoal] = useState(placeholderGoal);
+  const [userCourses, setUserCourses] = useState([]);
+  const [notificationFrequency, setNotificationFrequency] = useState('daily');
   const [streak, setStreak] = useState(0);
+  const [schedule, setSchedule] = useState({
+    sunday: [],
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+    saturday: [],
+  });
+  let isExistingUser; // brings back to home page every time
 
-  const [schedule, setSchedule] = useState(
-    JSON.parse(localStorage.getItem('schedule')) || {
-      sunday: [],
-      monday: [],
-      tuesday: [],
-      wednesday: [],
-      thursday: [],
-      friday: [],
-      saturday: [],
-    }
-  );
+  // problem: it renders based on whatever the flag is initially set to; resetting isExistingUser at the end doesn't rerender things
 
-  const isExistingUser =
-    userCourses.length > 0 ||
-    notificationFrequency !== 'daily' ||
-    courseGoal !== null ||
-    streak > 0;
+  useEffect(() => {
+    chrome.storage.sync.get(
+      ['courseGoal', 'userCourses', 'streak', 'schedule'],
+      (result) => {
+        setCourseGoal(result.courseGoal ?? courseGoal);
+        setStreak(result.streak ?? streak);
+        setSchedule(result.schedule ?? schedule);
+        setUserCourses(result.userCourses ?? userCourses);
+      }
+    );
+    isExistingUser = checksIfExistingUser();
+    console.log(isExistingUser);
+  }, [isExistingUser]);
 
-  chrome.action.setBadgeText(
-    {
-      text: String(streak),
-    },
-    () => {
-      console.log('Badge text set successfully!');
-    }
-  );
+  useEffect(() => {
+    chrome.action.setBadgeText(
+      {
+        text: String(streak),
+      },
+      () => console.log('Badge text has been set!')
+    );
+  }, [streak]);
+
+  const checksIfExistingUser = () => {
+    return (
+      userCourses.length > 0 ||
+      notificationFrequency !== 'daily' ||
+      courseGoal !== placeholderGoal ||
+      streak > 0
+    );
+  };
 
   return (
     <div className="App">
       <Switch>
         <Route exact path="/">
-          {!isExistingUser && <MeetOriion />}
           {isExistingUser && (
             <Home
               streak={streak}
@@ -62,6 +72,7 @@ const App = () => {
               setSchedule={setSchedule}
             />
           )}
+          {!isExistingUser && <MeetOriion />}
         </Route>
         <Route path="/get-started">
           <MeetOriion />

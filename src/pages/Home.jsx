@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TopBar from '../components/topbar/TopBar.jsx';
 import Schedule from '../components/schedule/Schedule.jsx';
 import BarChart from '../components/BarChart.jsx';
@@ -11,6 +11,23 @@ const Home = ({
   schedule,
   setSchedule,
 }) => {
+  // TODO:
+  //  - saves streak on each reload; should change later since this will overwrite background script incrementing streak
+  //  - later, streak should ONLY be instantiated and set in the background script (and the badge text should be set there too)
+  useEffect(() => {
+    chrome.storage.sync.set({
+      streak,
+    });
+  });
+
+  // useEffect(() => {
+  //   chrome.storage.sync.get(['courseGoal', 'streak', 'schedule'], (result) => {
+  //     setCourseGoal(result.courseGoal);
+  //     setStreak(result.streak);
+  //     setSchedule(result.schedule);
+  //   });
+  // }, []);
+
   return (
     <div className="home">
       <TopBar />

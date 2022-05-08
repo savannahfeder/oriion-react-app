@@ -186,7 +186,7 @@ const Schedule = ({ schedule, setSchedule, currentPage }) => {
           <Link
             onClick={saveToLocalStorage}
             className="button button-link form-button"
-            to="/notifications"
+            to="/"
           >
             Submit
           </Link>
