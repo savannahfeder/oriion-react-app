@@ -19,15 +19,6 @@ const Home = ({
       streak,
     });
   });
-
-  // useEffect(() => {
-  //   chrome.storage.sync.get(['courseGoal', 'streak', 'schedule'], (result) => {
-  //     setCourseGoal(result.courseGoal);
-  //     setStreak(result.streak);
-  //     setSchedule(result.schedule);
-  //   });
-  // }, []);
-
   return (
     <div className="home">
       <TopBar />
