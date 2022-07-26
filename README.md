@@ -4,7 +4,7 @@ Oriion is an accountability chrome extension developed to reduce the low retenti
 
 <img src="https://user-images.githubusercontent.com/71240740/153739991-75b70b26-d36c-416a-8fd2-518703b703fc.png" width="250"/>
 
-# Chrome Extension with React.js Boilerplate
+# React Chrome Extension Boilerplate Instructions
 
 [![GitHub version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](https://github.com/vivek9patel/chrome-extension-react-boilerplate)
 [![License](https://img.shields.io/github/license/yilber/readme-boilerplate.svg)](https://github.com/vivek9patel/chrome-extension-react-boilerplate/blob/master/LICENCE)
@@ -79,19 +79,3 @@ chrome-extension-react-boilerplate
 - Now, open up your chrome browser and type `chrome://extensions` in the URL bar.
 - Toggle developer mode to on and click on the _Load Unpacked_ button.
 - This will open a window to select folder. Go ahed and open the `dist` folder from the root directory, and that will load this extension in the chrome!
-
-## Bugs
-
-If you have questions, feature requests or a bug you want to report, please click [here](https://github.com/vivek9patel/chrome-extension-react-boilerplate/issues) to file an issue.
-
-## Author
-
-- [**vivek9patel**](https://www.linkedin.com/in/vivek9patel/)
-- [![GitHub followers](https://img.shields.io/github/followers/vivek9patel.svg?style=social)](https://github.com/vivek9patel)
-- [![Twitter Follow](https://img.shields.io/twitter/follow/vivek9patel.svg?style=social)](https://twitter.com/vivek9patel)
-
-## Support
-
-Like what you see? Keep me awake at night by buying me a coffee or two.
-
-<a href="https://www.buymeacoffee.com/vivek9patel" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 45px !important;width: 157px !important;" ></a>
